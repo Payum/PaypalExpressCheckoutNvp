@@ -5,5 +5,12 @@
                   http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd"
 >
     <mapped-superclass name="Payum\Paypal\ExpressCheckout\Nvp\Bridge\Doctrine\Entity\Instruction">
+        
+        <field name="token" column="token" type="string" length="255" />
+
+        <field name="paymentrequest_n_amt" column="paymentrequest_n_amt" type="array" />
+
+        <field name="paymentrequest_n_paymentaction" column="paymentrequest_n_paymentaction" type="array" />
+        
     </mapped-superclass>
 </doctrine-mapping>
