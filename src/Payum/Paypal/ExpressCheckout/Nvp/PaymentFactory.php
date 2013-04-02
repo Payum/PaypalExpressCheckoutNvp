@@ -13,6 +13,7 @@ use Payum\Paypal\ExpressCheckout\Nvp\Action\GetTransactionDetailsAction;
 use Payum\Paypal\ExpressCheckout\Nvp\Action\StatusAction;
 use Payum\Paypal\ExpressCheckout\Nvp\Action\SyncAction;
 use Payum\Paypal\ExpressCheckout\Nvp\Action\SetExpressCheckoutAction;
+use Payum\Paypal\ExpressCheckout\Nvp\Action\AuthorizeTokenAction;
 
 abstract class PaymentFactory
 {
@@ -33,6 +34,7 @@ abstract class PaymentFactory
         $payment->addAction(new GetExpressCheckoutDetailsAction);
         $payment->addAction(new GetTransactionDetailsAction);
         $payment->addAction(new DoExpressCheckoutPaymentAction);
+        $payment->addAction(new AuthorizeTokenAction);
         
         $payment->addAction(new CaptureAction);
         $payment->addAction(new StatusAction);
