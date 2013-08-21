@@ -33,16 +33,12 @@ class CreateRecurringPaymentProfileAction extends BaseApiAwareAction
             'CURRENCYCODE',
         ));
 
-        try {
-            $buzzRequest = new FormRequest();
-            $buzzRequest->setFields((array) $model);
+        $buzzRequest = new FormRequest();
+        $buzzRequest->setFields((array) $model);
 
-            $response = $this->api->createRecurringPaymentsProfile($buzzRequest);
-            
-            $model->replace($response);
-        } catch (HttpResponseAckNotSuccessException $e) {
-            $model->replace($e->getResponse());
-        }
+        $response = $this->api->createRecurringPaymentsProfile($buzzRequest);
+
+        $model->replace($response);
     }
 
     /**

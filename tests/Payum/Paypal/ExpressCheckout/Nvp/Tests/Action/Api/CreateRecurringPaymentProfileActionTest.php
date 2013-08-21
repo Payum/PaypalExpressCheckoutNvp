@@ -5,7 +5,6 @@ use Buzz\Message\Form\FormRequest;
 
 use Payum\Paypal\ExpressCheckout\Nvp\Action\Api\CreateRecurringPaymentProfileAction;
 use Payum\Paypal\ExpressCheckout\Nvp\Bridge\Buzz\Response;
-use Payum\Paypal\ExpressCheckout\Nvp\Exception\Http\HttpResponseAckNotSuccessException;
 use Payum\Paypal\ExpressCheckout\Nvp\Model\RecurringPaymentDetails;
 use Payum\Paypal\ExpressCheckout\Nvp\Request\Api\CreateRecurringPaymentProfileRequest;
 
@@ -223,54 +222,6 @@ class CreateRecurringPaymentProfileActionTest extends \PHPUnit_Framework_TestCas
         
         $this->assertArrayHasKey('PROFILESTATUS', $request->getModel());
         $this->assertEquals('theStatus', $request->getModel()['PROFILESTATUS']);
-    }
-
-    /**
-     * @test
-     */
-    public function shouldUpdateModelFromResponseInCaughtAckFailedException()
-    {
-        $response = new Response();
-        $response->setContent(http_build_query(array(
-            'L_ERRORCODE0' => 'foo_error',
-            'L_ERRORCODE1' => 'bar_error',
-        )));
-
-        $ackFailedException = new HttpResponseAckNotSuccessException;
-        $ackFailedException->setRequest(new FormRequest());
-        $ackFailedException->setResponse($response);
-
-        $apiMock = $this->createApiMock();
-        $apiMock
-            ->expects($this->once())
-            ->method('createRecurringPaymentsProfile')
-            ->will($this->throwException($ackFailedException))
-        ;
-
-        $action = new CreateRecurringPaymentProfileAction();
-        $action->setApi($apiMock);
-
-        $request = new CreateRecurringPaymentProfileRequest(array(
-            'TOKEN' => 'theToken',
-            'PROFILESTARTDATE' => 'theStartDate',
-            'DESC' => 'theDesc',
-            'BILLINGPERIOD' => 'thePeriod',
-            'BILLINGFREQUENCY' => 'theFrequency',
-            'AMT' => 'theAmt',
-            'CURRENCYCODE' => 'theCurr',
-            'EMAIL' => 'theEmail',
-            'STREET' => 'theStreet',
-            'CITY' => 'theCity',
-            'COUNTRYCODE' => 'theCountry',
-            'ZIP' => 'theZip',
-        ));
-
-        $action->execute($request);
-
-        $this->assertArrayHasKey('L_ERRORCODE0', $request->getModel());
-        $this->assertEquals('foo_error', $request->getModel()['L_ERRORCODE0']);
-        $this->assertArrayHasKey('L_ERRORCODE1', $request->getModel());
-        $this->assertEquals('bar_error', $request->getModel()['L_ERRORCODE1']);
     }
 
     /**
