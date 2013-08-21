@@ -1,3 +1,8 @@
+0.5 to 0.6
+==========
+
+* [Api] HttpResponseAckNotSuccessException exception has been removed. Now if ACK failed it will be return as well as when it is Success.
+
 0.4 to 0.5
 ==========
 
