@@ -452,13 +452,6 @@ class Api
         if (false == $response->isSuccessful()) {
             throw HttpException::factory($request, $response);
         }
-        if (false == ($response['ACK'] == self::ACK_SUCCESS || $response['ACK'] ==  self::ACK_SUCCESS_WITH_WARNING)) {
-            $e = new HttpResponseAckNotSuccessException('The response ACK is not success.');
-            $e->setRequest($request);
-            $e->setResponse($response);
-            
-            throw $e;
-        }
 
         return $response;
     }

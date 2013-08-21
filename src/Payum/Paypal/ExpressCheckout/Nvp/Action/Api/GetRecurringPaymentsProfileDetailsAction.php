@@ -5,8 +5,6 @@ use Buzz\Message\Form\FormRequest;
 
 use Payum\Bridge\Spl\ArrayObject;
 use Payum\Exception\RequestNotSupportedException;
-use Payum\Paypal\ExpressCheckout\Nvp\Action\Api\BaseApiAwareAction;
-use Payum\Paypal\ExpressCheckout\Nvp\Exception\Http\HttpResponseAckNotSuccessException;
 use Payum\Paypal\ExpressCheckout\Nvp\Request\Api\CreateRecurringPaymentProfileRequest;
 use Payum\Paypal\ExpressCheckout\Nvp\Request\Api\GetRecurringPaymentsProfileDetailsRequest;
 
@@ -26,16 +24,12 @@ class GetRecurringPaymentsProfileDetailsAction extends BaseApiAwareAction
 
         $model->validatedNotEmpty('PROFILEID');
 
-        try {
-            $buzzRequest = new FormRequest();
-            $buzzRequest->setField('PROFILEID', $model['PROFILEID']);
+        $buzzRequest = new FormRequest();
+        $buzzRequest->setField('PROFILEID', $model['PROFILEID']);
 
-            $response = $this->api->getRecurringPaymentsProfileDetails($buzzRequest);
-            
-            $model->replace($response);
-        } catch (HttpResponseAckNotSuccessException $e) {
-            $model->replace($e->getResponse());
-        }
+        $response = $this->api->getRecurringPaymentsProfileDetails($buzzRequest);
+
+        $model->replace($response);
     }
 
     /**

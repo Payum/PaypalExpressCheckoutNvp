@@ -5,7 +5,6 @@ use Buzz\Message\Form\FormRequest;
 
 use Payum\Bridge\Spl\ArrayObject;
 use Payum\Exception\RequestNotSupportedException;
-use Payum\Paypal\ExpressCheckout\Nvp\Exception\Http\HttpResponseAckNotSuccessException;
 use Payum\Paypal\ExpressCheckout\Nvp\Request\Api\ManageRecurringPaymentsProfileStatusRequest;
 
 class ManageRecurringPaymentsProfileStatusAction extends BaseApiAwareAction 
@@ -27,13 +26,9 @@ class ManageRecurringPaymentsProfileStatusAction extends BaseApiAwareAction
         $buzzRequest = new FormRequest;
         $buzzRequest->setFields((array) $model);
 
-        try {
-            $response = $this->api->manageRecurringPaymentsProfileStatus($buzzRequest);
+        $response = $this->api->manageRecurringPaymentsProfileStatus($buzzRequest);
 
-            $model->replace($response);
-        } catch (HttpResponseAckNotSuccessException $e) {
-            $model->replace($e->getResponse());
-        }
+        $model->replace($response);
     }
 
     /**
