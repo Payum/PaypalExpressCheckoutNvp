@@ -34,7 +34,6 @@ class PaymentDetailsTest extends MongoTest
         $paymentDetails->setToken($expectedToken = 'theToken');
         $paymentDetails->setPaymentrequestAmt(0, $expectedAmount = 123.15);
         $paymentDetails->setPaymentrequestPaymentaction(0, $expectedAction = 'thePaymentAction');
-        print_r($paymentDetails->getPaymentrequestAmt(0));
         $this->dm->persist($paymentDetails);
         $this->dm->flush();
 
