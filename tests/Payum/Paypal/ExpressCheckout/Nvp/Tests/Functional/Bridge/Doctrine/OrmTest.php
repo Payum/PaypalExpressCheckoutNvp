@@ -2,7 +2,6 @@
 namespace Payum\Paypal\ExpressCheckout\Nvp\Tests\Functional\Bridge\Doctrine;
 
 use Doctrine\Common\Persistence\Mapping\Driver\MappingDriverChain;
-use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Mapping\Driver\SimplifiedXmlDriver;
 use Doctrine\Common\Annotations\AnnotationRegistry;
 use Doctrine\Common\Annotations\AnnotationReader;
@@ -26,7 +25,7 @@ abstract class OrmTest extends BaseOrmTest
         
         $xmlDriver = new SimplifiedXmlDriver(array(
             $rootDir.'/src/Payum/Paypal/ExpressCheckout/Nvp/Bridge/Doctrine/Resources/mapping' => 'Payum\Paypal\ExpressCheckout\Nvp\Bridge\Doctrine\Entity'
-        ));        
+        ));
         $driver->addDriver($xmlDriver, 'Payum\Paypal\ExpressCheckout\Nvp\Bridge\Doctrine\Entity');
 
         $rc = new \ReflectionClass('\Doctrine\ORM\Mapping\Driver\AnnotationDriver');
