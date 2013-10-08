@@ -1,8 +1,10 @@
 <?php
+
 namespace Payum\Paypal\ExpressCheckout\Nvp\Tests\Functional\Bridge\Doctrine\Document;
 
-use Payum\Paypal\ExpressCheckout\Nvp\Tests\Functional\Bridge\Doctrine\MongoTest;
 use Payum\Paypal\ExpressCheckout\Nvp\Examples\Document\PaymentDetails;
+use Payum\Paypal\ExpressCheckout\Nvp\Tests\Functional\Bridge\Doctrine\MongoTest;
+
 
 class PaymentDetailsTest extends MongoTest
 {
@@ -14,7 +16,7 @@ class PaymentDetailsTest extends MongoTest
         $paymentDetails = new PaymentDetails;
         $paymentDetails->setToken('foo');
 
-        //guard
+        // guard
         $this->assertNull($paymentDetails->getId());
 
         $this->dm->persist($paymentDetails);

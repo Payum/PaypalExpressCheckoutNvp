@@ -1,7 +1,6 @@
 <?php
-namespace Payum\Paypal\ExpressCheckout\Nvp\Model;
 
-use Payum\Paypal\ExpressCheckout\Nvp\Model\BaseModel;
+namespace Payum\Paypal\ExpressCheckout\Nvp\Model;
 
 /**
  * @link https://www.x.com/developers/paypal/documentation-tools/api/setexpresscheckout-api-operation-nvp
