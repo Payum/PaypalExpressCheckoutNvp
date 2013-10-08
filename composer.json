@@ -18,6 +18,7 @@
     },
     "require-dev": {
         "doctrine/orm": "2.2.*",
+        "doctrine/mongodb-odm": "~1.0@dev",
         "phpunit/phpunit": "3.7.*",
         "fp/testo": "dev-master",
         "ext-curl": "*",
