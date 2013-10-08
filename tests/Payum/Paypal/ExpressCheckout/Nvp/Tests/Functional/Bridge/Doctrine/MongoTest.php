@@ -33,8 +33,9 @@ abstract class MongoTest extends BaseMongoTest
             ),
             '.mongodb.xml'
         );
-        $driver->addDriver($xmlDriver, 'Payum\Paypal\ExpressCheckout\Nvp\Bridge\Doctrine\Document');
         $driver->addDriver($xmlDriver, 'Payum\Paypal\ExpressCheckout\Nvp\Examples\Document');
+        $driver->addDriver($xmlDriver, 'Payum\Paypal\ExpressCheckout\Nvp\Bridge\Doctrine\Document');
+
 
         return $driver;
     }

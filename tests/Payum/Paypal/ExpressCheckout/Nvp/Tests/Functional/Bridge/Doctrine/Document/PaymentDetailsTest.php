@@ -34,7 +34,7 @@ class PaymentDetailsTest extends MongoTest
         $paymentDetails->setToken($expectedToken = 'theToken');
         $paymentDetails->setPaymentrequestAmt(0, $expectedAmount = 123.15);
         $paymentDetails->setPaymentrequestPaymentaction(0, $expectedAction = 'thePaymentAction');
-
+        print_r($paymentDetails->getPaymentrequestAmt(0));
         $this->dm->persist($paymentDetails);
         $this->dm->flush();
 
@@ -47,6 +47,7 @@ class PaymentDetailsTest extends MongoTest
         $this->assertNotSame($paymentDetails, $foundInstruction);
 
         $this->assertEquals($expectedToken, $foundInstruction->getToken());
+        print_r($foundInstruction);die();
         $this->assertEquals($expectedAmount, $foundInstruction->getPaymentrequestAmt(0));
         $this->assertEquals($expectedAction, $foundInstruction->getPaymentrequestPaymentaction(0));
     }
