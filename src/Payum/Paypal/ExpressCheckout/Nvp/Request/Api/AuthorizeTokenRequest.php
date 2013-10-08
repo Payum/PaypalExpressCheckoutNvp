@@ -12,12 +12,12 @@ class AuthorizeTokenRequest extends BaseModelRequest
 
     /**
      * @param mixed $model
-     * @param bool $force
+     * @param bool  $force
      */
     public function __construct($model, $force = false)
     {
         parent::__construct($model);
-        
+
         $this->force = $force;
     }
 

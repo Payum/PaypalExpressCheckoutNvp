@@ -21,7 +21,7 @@ class GetRecurringPaymentsProfileDetailsActionTest extends \PHPUnit_Framework_Te
     /**
      * @test
      */
-    public function couldBeConstructedWithoutAnyArguments()   
+    public function couldBeConstructedWithoutAnyArguments()
     {
         new GetRecurringPaymentsProfileDetailsAction();
     }
@@ -32,7 +32,7 @@ class GetRecurringPaymentsProfileDetailsActionTest extends \PHPUnit_Framework_Te
     public function shouldSupportGetRecurringPaymentsProfileDetailsRequestAndArrayAccessAsModel()
     {
         $action = new GetRecurringPaymentsProfileDetailsAction();
-        
+
         $this->assertTrue(
             $action->supports(new GetRecurringPaymentsProfileDetailsRequest($this->getMock('ArrayAccess')))
         );
@@ -60,7 +60,7 @@ class GetRecurringPaymentsProfileDetailsActionTest extends \PHPUnit_Framework_Te
 
     /**
      * @test
-     * 
+     *
      * @expectedException \Payum\Exception\RequestNotSupportedException
      */
     public function throwIfNotSupportedRequestGivenAsArgumentForExecute()
@@ -79,7 +79,7 @@ class GetRecurringPaymentsProfileDetailsActionTest extends \PHPUnit_Framework_Te
     public function throwIfTokenNotSetInModel()
     {
         $action = new GetRecurringPaymentsProfileDetailsAction();
-        
+
         $request = new GetRecurringPaymentsProfileDetailsRequest(array());
 
         $action->execute($request);
@@ -91,29 +91,29 @@ class GetRecurringPaymentsProfileDetailsActionTest extends \PHPUnit_Framework_Te
     public function shouldCallApiGetRecurringPaymentsProfileDetailsMethodWithExpectedRequiredArguments()
     {
         $actualRequest = null;
-        
+
         $apiMock = $this->createApiMock();
         $apiMock
             ->expects($this->once())
             ->method('getRecurringPaymentsProfileDetails')
-            ->will($this->returnCallback(function($request) use (&$actualRequest){
+            ->will($this->returnCallback(function($request) use (&$actualRequest) {
                 $actualRequest = $request;
 
                 return new Response();
             }))
         ;
-        
+
         $action = new GetRecurringPaymentsProfileDetailsAction();
         $action->setApi($apiMock);
 
         $request = new GetRecurringPaymentsProfileDetailsRequest(array(
-            'PROFILEID' => 'theProfileId', 
+            'PROFILEID' => 'theProfileId',
         ));
 
         $action->execute($request);
-        
+
         $this->assertInstanceOf('Buzz\Message\Form\FormRequest', $actualRequest);
-        
+
         $fields = $actualRequest->getFields();
 
         $this->assertArrayHasKey('PROFILEID', $fields);
@@ -134,7 +134,7 @@ class GetRecurringPaymentsProfileDetailsActionTest extends \PHPUnit_Framework_Te
                 $response->setContent(http_build_query(array(
                     'STATUS'=> 'theStatus',
                 )));
-                
+
                 return $response;
             }))
         ;

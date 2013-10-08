@@ -18,14 +18,14 @@ class CaptureActionTest extends \PHPUnit_Framework_TestCase
     public function shouldBeSubClassOfPaymentAwareAction()
     {
         $rc = new \ReflectionClass('Payum\Paypal\ExpressCheckout\Nvp\Action\CaptureAction');
-        
+
         $this->assertTrue($rc->isSubclassOf('Payum\Action\PaymentAwareAction'));
     }
 
     /**
      * @test
      */
-    public function couldBeConstructedWithoutAnyArguments()   
+    public function couldBeConstructedWithoutAnyArguments()
     {
         new CaptureAction();
     }
@@ -38,7 +38,7 @@ class CaptureActionTest extends \PHPUnit_Framework_TestCase
         $action = new CaptureAction();
 
         $request = new CaptureRequest($this->getMock('ArrayAccess'));
-        
+
         $this->assertTrue($action->supports($request));
     }
 
@@ -58,7 +58,7 @@ class CaptureActionTest extends \PHPUnit_Framework_TestCase
     public function shouldNotSupportNotCaptureRequest()
     {
         $action = new CaptureAction();
-        
+
         $request = new \stdClass();
 
         $this->assertFalse($action->supports($request));
@@ -70,15 +70,15 @@ class CaptureActionTest extends \PHPUnit_Framework_TestCase
     public function shouldNotSupportCaptureRequestAndNotArrayAccessAsModel()
     {
         $action = new CaptureAction();
-        
+
         $request = new CaptureRequest(new \stdClass());
-        
+
         $this->assertFalse($action->supports($request));
     }
 
     /**
      * @test
-     * 
+     *
      * @expectedException \Payum\Exception\RequestNotSupportedException
      */
     public function throwIfNotSupportedRequestGivenAsArgumentForExecute()
@@ -95,9 +95,9 @@ class CaptureActionTest extends \PHPUnit_Framework_TestCase
     {
         $action = new CaptureAction();
         $action->setPayment($this->createPaymentMock());
-        
+
         $action->execute($request = new CaptureRequest(array()));
-        
+
         $this->assertArrayHasKey('PAYMENTREQUEST_0_PAYMENTACTION', $request->getModel());
         $this->assertEquals(Api::PAYMENTACTION_SALE, $request->getModel()['PAYMENTREQUEST_0_PAYMENTACTION']);
     }
@@ -118,7 +118,7 @@ class CaptureActionTest extends \PHPUnit_Framework_TestCase
             ->method('execute')
             ->with($this->isInstanceOf('Payum\Paypal\ExpressCheckout\Nvp\Request\Api\AuthorizeTokenRequest'))
         ;
-        
+
         $action = new CaptureAction();
         $action->setPayment($paymentMock);
 
@@ -269,11 +269,11 @@ class CaptureActionTest extends \PHPUnit_Framework_TestCase
             'L_ERRORCODE0' => 'foo_error',
             'L_ERRORCODE1' => 'bar_error',
         )));
-        
+
         $ackFailedException = new HttpResponseAckNotSuccessException;
         $ackFailedException->setRequest(new FormRequest());
         $ackFailedException->setResponse($response);
-        
+
         $paymentMock = $this->createPaymentMock();
         $paymentMock
             ->expects($this->exactly(1))
@@ -297,7 +297,7 @@ class CaptureActionTest extends \PHPUnit_Framework_TestCase
         $this->assertArrayHasKey('L_ERRORCODE1', $request->getModel());
         $this->assertEquals('bar_error', $request->getModel()['L_ERRORCODE1']);
     }
-    
+
     /**
      * @return \PHPUnit_Framework_MockObject_MockObject|\Payum\PaymentInterface
      */

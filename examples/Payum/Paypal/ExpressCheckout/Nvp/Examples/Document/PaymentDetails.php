@@ -12,5 +12,5 @@ class PaymentDetails extends BasePaymentDetails
     /**
      * @Mongo\Id
      */
-    protected $id; 
+    protected $id;
 }

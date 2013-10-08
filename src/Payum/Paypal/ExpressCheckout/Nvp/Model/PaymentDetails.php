@@ -1,8 +1,6 @@
 <?php
 namespace Payum\Paypal\ExpressCheckout\Nvp\Model;
 
-use Payum\Exception\InvalidArgumentException;
-use Payum\Exception\LogicException;
 use Payum\Paypal\ExpressCheckout\Nvp\Model\BaseModel;
 
 /**
@@ -73,7 +71,7 @@ class PaymentDetails extends BaseModel
     protected $build;
 
     protected $ack;
-    
+
     protected $noshipping;
 
     protected $reqconfirmshipping;

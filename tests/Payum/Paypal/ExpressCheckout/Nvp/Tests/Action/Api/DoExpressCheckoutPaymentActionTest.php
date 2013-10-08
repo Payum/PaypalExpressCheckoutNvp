@@ -21,7 +21,7 @@ class DoExpressCheckoutPaymentActionTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      */
-    public function couldBeConstructedWithoutAnyArguments()   
+    public function couldBeConstructedWithoutAnyArguments()
     {
         new DoExpressCheckoutPaymentAction();
     }
@@ -32,7 +32,7 @@ class DoExpressCheckoutPaymentActionTest extends \PHPUnit_Framework_TestCase
     public function shouldSupportDoExpressCheckoutPaymentRequestAndArrayAccessAsModel()
     {
         $action = new DoExpressCheckoutPaymentAction();
-        
+
         $this->assertTrue($action->supports(new DoExpressCheckoutPaymentRequest($this->getMock('ArrayAccess'))));
     }
 
@@ -58,7 +58,7 @@ class DoExpressCheckoutPaymentActionTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * 
+     *
      * @expectedException \Payum\Exception\RequestNotSupportedException
      */
     public function throwIfNotSupportedRequestGivenAsArgumentForExecute()
@@ -77,7 +77,7 @@ class DoExpressCheckoutPaymentActionTest extends \PHPUnit_Framework_TestCase
     public function throwIfTokenNotSetInModel()
     {
         $action = new DoExpressCheckoutPaymentAction();
-        
+
         $action->execute(new DoExpressCheckoutPaymentRequest(array()));
     }
 
@@ -141,18 +141,18 @@ class DoExpressCheckoutPaymentActionTest extends \PHPUnit_Framework_TestCase
     public function shouldCallApiDoExpressCheckoutMethodWithExpectedRequiredArguments()
     {
         $actualRequest = null;
-        
+
         $apiMock = $this->createApiMock();
         $apiMock
             ->expects($this->once())
             ->method('doExpressCheckoutPayment')
-            ->will($this->returnCallback(function($request) use (&$actualRequest){
+            ->will($this->returnCallback(function($request) use (&$actualRequest) {
                 $actualRequest = $request;
 
                 return new Response();
             }))
         ;
-        
+
         $action = new DoExpressCheckoutPaymentAction();
         $action->setApi($apiMock);
 
@@ -164,9 +164,9 @@ class DoExpressCheckoutPaymentActionTest extends \PHPUnit_Framework_TestCase
         ));
 
         $action->execute($request);
-        
+
         $this->assertInstanceOf('Buzz\Message\Form\FormRequest', $actualRequest);
-        
+
         $fields = $actualRequest->getFields();
 
         $this->assertArrayHasKey('TOKEN', $fields);
@@ -197,7 +197,7 @@ class DoExpressCheckoutPaymentActionTest extends \PHPUnit_Framework_TestCase
                     'FIRSTNAME'=> 'theFirstname',
                     'EMAIL' => 'the@example.com'
                 )));
-                
+
                 return $response;
             }))
         ;
@@ -213,7 +213,7 @@ class DoExpressCheckoutPaymentActionTest extends \PHPUnit_Framework_TestCase
         ));
 
         $action->execute($request);
-        
+
         $this->assertArrayHasKey('FIRSTNAME', $request->getModel());
         $this->assertEquals('theFirstname', $request->getModel()['FIRSTNAME']);
         $this->assertArrayHasKey('EMAIL', $request->getModel());

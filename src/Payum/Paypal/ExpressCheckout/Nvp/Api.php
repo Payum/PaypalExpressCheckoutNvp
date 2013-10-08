@@ -16,7 +16,7 @@ use Payum\Paypal\ExpressCheckout\Nvp\Exception\Http\HttpResponseAckNotSuccessExc
  * @link https://www.x.com/developers/paypal/documentation-tools/api/gettransactiondetails-api-operation-nvp
  * @link https://www.x.com/developers/paypal/documentation-tools/api/createrecurringpaymentsprofile-api-operation-nvp
  * @link https://www.x.com/developers/paypal/documentation-tools/api/getrecurringpaymentsprofiledetails-api-operation-nvp
- * 
+ *
  * L_ERRORCODE: @link https://cms.paypal.com/us/cgi-bin/?cmd=_render-content&content_ID=developer/e_howto_api_nvp_errorcodes
  * ACK: @link https://www.x.com/content/paypal-nvp-api-overview
  */
@@ -178,7 +178,7 @@ class Api
 
     /**
      * Indicates whether you would like PayPal to automatically bill the outstanding balance amount in the next billing cycle.
-     * 
+     *
      * PayPal does not automatically bill the outstanding balance.
      */
     const AUTOBILLOUTAMT_NOAUTOBILL = 'NoAutoBill';
@@ -212,7 +212,7 @@ class Api
      * If this field is not set or you set it to CancelOnFailure, PayPal creates the recurring payment profile, but places it into a pending status until the initial payment completes. If the initial payment clears, PayPal notifies you by IPN that the pending profile has been activated. If the payment fails, PayPal notifies you by IPN that the pending profile has been canceled.
      */
     const FAILEDINITAMTACTION_CANCELONFAILURE = 'CancelOnFailure';
-    
+
     const CREDITCARDTYPE_VISA = 'Visa';
 
     const CREDITCARDTYPE_MASTERCARD = 'MasterCard';
@@ -225,7 +225,7 @@ class Api
      * If the credit card type is Maestro, you must set CURRENCYCODE to GBP. In addition, you must specify either STARTDATE or ISSUENUMBER.
      */
     const CREDITCARDTYPE_MAESTRO = 'Maestro';
-    
+
     const PAYERSTATUS_VERIFIED = 'verified';
 
     const PAYERSTATUS_UNVERIFIED = 'unverified';
@@ -247,18 +247,18 @@ class Api
 
     /**
      * Type of billing agreement for reference transactions. You must have permission from PayPal to use this field. This field must be set to one of the following values:
-     * 
+     *
      * PayPal creates a billing agreement for each transaction associated with buyer. You must specify version 54.0 or higher to use this option.
      */
     const BILLINGTYPE_MERCHANTINITIATEDBILLING = 'MerchantInitiatedBilling';
 
     /**
      * Type of billing agreement for reference transactions. You must have permission from PayPal to use this field. This field must be set to one of the following values:
-     * 
+     *
      * PayPal creates a single billing agreement for all transactions associated with buyer. Use this value unless you need per-transaction billing agreements. You must specify version 58.0 or higher to use this option.
      */
     const BILLINGTYPE_MERCHANTINITIATEDBILLINGSINGLEAGREEMENT = 'MerchantInitiatedBilling';
-    
+
     const RECURRINGPAYMENTSTATUS_ACTIVE = 'Active';
 
     const RECURRINGPAYMENTSTATUS_PENDING = 'Pending';
@@ -407,7 +407,7 @@ class Api
 
     /**
      * @param \Buzz\Message\Form\FormRequest $request
-     * 
+     *
      * @return \Payum\Paypal\ExpressCheckout\Nvp\Bridge\Buzz\Response
      */
     public function getRecurringPaymentsProfileDetails(FormRequest $request)
@@ -422,7 +422,7 @@ class Api
 
     /**
      * @param FormRequest $request
-     * 
+     *
      * @return \Payum\Paypal\ExpressCheckout\Nvp\Bridge\Buzz\Response
      */
     public function manageRecurringPaymentsProfileStatus(FormRequest $request)
@@ -456,7 +456,7 @@ class Api
             $e = new HttpResponseAckNotSuccessException('The response ACK is not success.');
             $e->setRequest($request);
             $e->setResponse($response);
-            
+
             throw $e;
         }
 
@@ -465,7 +465,7 @@ class Api
 
     /**
      * @param string $token
-     * 
+     *
      * @return string
      */
     public function getAuthorizeTokenUrl($token)

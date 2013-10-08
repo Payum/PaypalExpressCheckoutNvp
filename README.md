@@ -7,7 +7,7 @@ The lib implements [Paypal Express Checkout](https://www.x.com/content/paypal-nv
 
 ```php
 <?php
-//Source: Payum\Paypal\ExpressCheckout\Nvp\Examples\ReadmeTest::doCapture()
+// Source: Payum\Paypal\ExpressCheckout\Nvp\Examples\ReadmeTest::doCapture()
 use Buzz\Client\Curl;
 use Payum\Paypal\ExpressCheckout\Nvp\Api;
 use Payum\Paypal\ExpressCheckout\Nvp\PaymentFactory;
@@ -29,7 +29,7 @@ $capture = new CaptureRequest(array(
 ));
 
 if ($interactiveRequest = $payment->execute($capture, $expectsInteractive = true)) {
-    //save your models somewhere.
+    // save your models somewhere.
     if ($interactiveRequest instanceof RedirectUrlInteractiveRequest) {
         header('Location: '.$interactiveRequest->getUrl());
         exit;
@@ -42,7 +42,7 @@ You can also capture digital goods:
 
 ```php
 <?php
-//Source: Payum\Paypal\ExpressCheckout\Nvp\Examples\ReadmeTest::doDigitalGoodsCapture()
+// Source: Payum\Paypal\ExpressCheckout\Nvp\Examples\ReadmeTest::doDigitalGoodsCapture()
 
 $capture = new CaptureRequest(array(
     
@@ -63,7 +63,7 @@ $capture = new CaptureRequest(array(
 
 ```php
 <?php
-//Source: Payum\Paypal\ExpressCheckout\Nvp\Examples\ReadmeTest::doStatus()
+// Source: Payum\Paypal\ExpressCheckout\Nvp\Examples\ReadmeTest::doStatus()
 use Payum\Request\BinaryMaskStatusRequest;
 
 $status = new BinaryMaskStatusRequest($capture->getModel());
@@ -94,7 +94,7 @@ First you have to create billing agreement and capture it as described [above](#
 
 ```php
 <?php
-//Source: Payum\Paypal\ExpressCheckout\Nvp\Examples\ReadmeTest::createBillingAgrement()
+// Source: Payum\Paypal\ExpressCheckout\Nvp\Examples\ReadmeTest::createBillingAgrement()
 use Payum\Request\CaptureRequest;
 use Payum\Paypal\ExpressCheckout\Nvp\Api;
 
@@ -113,7 +113,7 @@ After you are done with capture, [check billing agreement status](#was-the-payme
 
 ```php
 <?php
-//Source: Payum\Paypal\ExpressCheckout\Nvp\Examples\ReadmeTest::createRecurringPaymnt()
+// Source: Payum\Paypal\ExpressCheckout\Nvp\Examples\ReadmeTest::createRecurringPaymnt()
 use Payum\Paypal\ExpressCheckout\Nvp\Api;
 use Payum\Paypal\ExpressCheckout\Nvp\Request\Api\CreateRecurringPaymentProfileRequest;
 use Payum\Request\SyncRequest;

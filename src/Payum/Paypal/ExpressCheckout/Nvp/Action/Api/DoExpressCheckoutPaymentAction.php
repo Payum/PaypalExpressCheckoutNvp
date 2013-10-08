@@ -36,7 +36,7 @@ class DoExpressCheckoutPaymentAction extends BaseApiAwareAction
         if (null === $model['PAYMENTREQUEST_0_AMT']) {
             throw new LogicException('PAYMENTREQUEST_0_AMT must be set.');
         }
-        
+
         $buzzRequest = new FormRequest();
         $buzzRequest->setFields((array) $model);
 
@@ -50,7 +50,7 @@ class DoExpressCheckoutPaymentAction extends BaseApiAwareAction
      */
     public function supports($request)
     {
-        return 
+        return
             $request instanceof DoExpressCheckoutPaymentRequest &&
             $request->getModel() instanceof \ArrayAccess
         ;

@@ -30,16 +30,16 @@ class CaptureAction extends PaymentAwareAction
             if (false == $model['PAYMENTREQUEST_0_PAYMENTACTION']) {
                 $model['PAYMENTREQUEST_0_PAYMENTACTION'] = Api::PAYMENTACTION_SALE;
             }
-            
+
             if (false == $model['TOKEN']) {
                 $this->payment->execute(new SetExpressCheckoutRequest($model));
                 $this->payment->execute(new AuthorizeTokenRequest($model));
             }
 
             $this->payment->execute(new SyncRequest($model));
-            
+
             if (
-                $model['PAYERID'] &&  
+                $model['PAYERID'] &&
                 Api::CHECKOUTSTATUS_PAYMENT_ACTION_NOT_INITIATED == $model['CHECKOUTSTATUS'] &&
                 $model['PAYMENTREQUEST_0_AMT'] > 0
             ) {
@@ -57,9 +57,9 @@ class CaptureAction extends PaymentAwareAction
      */
     public function supports($request)
     {
-        return 
+        return
             $request instanceof CaptureRequest &&
             $request->getModel() instanceof \ArrayAccess
-        ; 
+        ;
     }
 }

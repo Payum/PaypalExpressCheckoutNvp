@@ -1,4 +1,5 @@
 <?php
+
 namespace Payum\Paypal\ExpressCheckout\Nvp\Tests\Model;
 
 use Payum\Paypal\ExpressCheckout\Nvp\Model\RecurringPaymentDetails;
@@ -389,7 +390,6 @@ class RecurringPaymentDetailsTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($value, $instruction->$getter(0, 0));
         $this->assertEquals($value, $instruction->$getter(9, 9));
     }
-
 
     /**
      * @test

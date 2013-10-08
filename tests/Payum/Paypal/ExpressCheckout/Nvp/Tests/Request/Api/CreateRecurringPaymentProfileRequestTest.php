@@ -1,4 +1,5 @@
 <?php
+
 namespace Payum\Paypal\ExpressCheckout\Nvp\Tests\Request\Api;
 
 class CreateRecurringPaymentProfileRequestTest extends \PHPUnit_Framework_TestCase

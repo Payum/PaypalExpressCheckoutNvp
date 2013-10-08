@@ -11,7 +11,7 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
     public function shouldBeSubClassOfBuzzResponse()
     {
         $rc = new \ReflectionClass('Payum\Paypal\ExpressCheckout\Nvp\Bridge\Buzz\Response');
-        
+
         $this->assertTrue($rc->isSubclassOf('Buzz\Message\Response'));
     }
 
@@ -21,7 +21,7 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
     public function shouldImplementArrayAccessInterface()
     {
         $rc = new \ReflectionClass('Payum\Paypal\ExpressCheckout\Nvp\Bridge\Buzz\Response');
-        
+
         $this->assertTrue($rc->implementsInterface('ArrayAccess'));
     }
 
@@ -58,10 +58,10 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
     public function shouldAllowGetPreviouslySetValue()
     {
         $expectedValue = 'foo';
-        
+
         $response = new Response;
         $response['foo'] = $expectedValue;
-        
+
         $this->assertEquals($expectedValue, $response['foo']);
     }
 
@@ -71,7 +71,7 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
     public function shouldGetNullIfValueNotSet()
     {
         $response = new Response;
-        
+
         $this->assertNull($response['foo']);
     }
 
@@ -128,7 +128,7 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
         $response['foo'] = 'foo';
 
         unset($response['foo']);
-        
+
         $this->assertNull($response['foo']);
     }
 }

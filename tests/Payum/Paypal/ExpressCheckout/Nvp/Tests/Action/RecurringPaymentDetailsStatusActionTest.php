@@ -1,8 +1,6 @@
 <?php
 namespace Payum\Paypal\ExpressCheckout\Nvp\Tests\Action;
 
-use Buzz\Message\Form\FormRequest;
-
 use Payum\Paypal\ExpressCheckout\Nvp\Action\RecurringPaymentDetailsStatusAction;
 use Payum\Paypal\ExpressCheckout\Nvp\Model\RecurringPaymentDetails;
 use Payum\Request\BinaryMaskStatusRequest;
@@ -16,14 +14,14 @@ class RecurringPaymentDetailsStatusActionTest extends \PHPUnit_Framework_TestCas
     public function shouldImplementsActionInterface()
     {
         $rc = new \ReflectionClass('Payum\Paypal\ExpressCheckout\Nvp\Action\RecurringPaymentDetailsStatusAction');
-        
+
         $this->assertTrue($rc->implementsInterface('Payum\Action\ActionInterface'));
     }
 
     /**
      * @test
      */
-    public function couldBeConstructedWithoutAnyArguments()   
+    public function couldBeConstructedWithoutAnyArguments()
     {
         new RecurringPaymentDetailsStatusAction();
     }
@@ -34,13 +32,13 @@ class RecurringPaymentDetailsStatusActionTest extends \PHPUnit_Framework_TestCas
     public function shouldSupportStatusRequestWithArrayAsModelWhichHasBillingPeriodSet()
     {
         $action = new RecurringPaymentDetailsStatusAction();
-        
+
         $recurringPaymentDetails = array(
            'BILLINGPERIOD' => 'foo'
         );
-        
+
         $request = new BinaryMaskStatusRequest($recurringPaymentDetails);
-        
+
         $this->assertTrue($action->supports($request));
     }
 
@@ -83,7 +81,7 @@ class RecurringPaymentDetailsStatusActionTest extends \PHPUnit_Framework_TestCas
 
     /**
      * @test
-     * 
+     *
      * @expectedException \Payum\Exception\RequestNotSupportedException
      */
     public function throwIfNotSupportedRequestGivenAsArgumentForExecute()
@@ -120,9 +118,9 @@ class RecurringPaymentDetailsStatusActionTest extends \PHPUnit_Framework_TestCas
         $request = new BinaryMaskStatusRequest(array(
             'BILLINGPERIOD' => 'foo',
         ));
-        
+
         $action->execute($request);
-        
+
         $this->assertTrue($request->isNew());
     }
 

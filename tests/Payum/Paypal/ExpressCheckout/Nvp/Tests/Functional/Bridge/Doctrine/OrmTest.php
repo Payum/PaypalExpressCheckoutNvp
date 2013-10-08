@@ -15,14 +15,14 @@ abstract class OrmTest extends BaseOrmTest
      * {@inheritDoc}
      */
     protected function getMetadataDriverImpl()
-    {   
+    {
         $rootDir = realpath(__DIR__.'/../../../../../../../../../');
         if (false === $rootDir || false === is_dir($rootDir.'/src/Payum')) {
             throw new \RuntimeException('Cannot guess Payum root dir.');
         }
 
         $driver = new MappingDriverChain;
-        
+
         $xmlDriver = new SimplifiedXmlDriver(array(
             $rootDir.'/src/Payum/Paypal/ExpressCheckout/Nvp/Bridge/Doctrine/Resources/mapping' => 'Payum\Paypal\ExpressCheckout\Nvp\Bridge\Doctrine\Entity'
         ));
@@ -35,7 +35,7 @@ abstract class OrmTest extends BaseOrmTest
             $rootDir.'/examples/Payum/Paypal/ExpressCheckout/Nvp/Examples/Entity'
         ));
         $driver->addDriver($annotationDriver, 'Payum\Paypal\ExpressCheckout\Nvp\Examples\Entity');
-        
+
         return $driver;
     }
 }

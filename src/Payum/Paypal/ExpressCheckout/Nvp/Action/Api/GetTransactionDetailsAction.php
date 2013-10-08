@@ -21,7 +21,7 @@ class GetTransactionDetailsAction extends BaseApiAwareAction
         if (false == $this->supports($request)) {
             throw RequestNotSupportedException::createActionNotSupported($this, $request);
         }
-        
+
         $model = ArrayObject::ensureArrayObject($request->getModel());
 
         $transactionIndex = 'PAYMENTREQUEST_'.$request->getPaymentRequestN().'_TRANSACTIONID';
@@ -31,7 +31,7 @@ class GetTransactionDetailsAction extends BaseApiAwareAction
 
         $buzzRequest = new FormRequest();
         $buzzRequest->setField('TRANSACTIONID', $model[$transactionIndex]);
-        
+
         $response = $this->api->getTransactionDetails($buzzRequest);
         foreach ($response as $name => $value) {
             if (in_array($name, $this->getPaymentRequestNFields())) {
@@ -45,7 +45,7 @@ class GetTransactionDetailsAction extends BaseApiAwareAction
      */
     public function supports($request)
     {
-        return 
+        return
             $request instanceof GetTransactionDetailsRequest &&
             $request->getModel() instanceof \ArrayAccess
         ;

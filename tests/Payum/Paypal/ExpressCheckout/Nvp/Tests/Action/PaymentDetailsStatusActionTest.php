@@ -1,8 +1,6 @@
 <?php
 namespace Payum\Paypal\ExpressCheckout\Nvp\Tests\Action;
 
-use Buzz\Message\Form\FormRequest;
-
 use Payum\Request\BinaryMaskStatusRequest;
 use Payum\Paypal\ExpressCheckout\Nvp\Action\PaymentDetailsStatusAction;
 use Payum\Paypal\ExpressCheckout\Nvp\Model\PaymentDetails;
@@ -16,14 +14,14 @@ class PaymentDetailsStatusActionTest extends \PHPUnit_Framework_TestCase
     public function shouldImplementsActionInterface()
     {
         $rc = new \ReflectionClass('Payum\Paypal\ExpressCheckout\Nvp\Action\PaymentDetailsStatusAction');
-        
+
         $this->assertTrue($rc->implementsInterface('Payum\Action\ActionInterface'));
     }
 
     /**
      * @test
      */
-    public function couldBeConstructedWithoutAnyArguments()   
+    public function couldBeConstructedWithoutAnyArguments()
     {
         new PaymentDetailsStatusAction();
     }
@@ -34,13 +32,13 @@ class PaymentDetailsStatusActionTest extends \PHPUnit_Framework_TestCase
     public function shouldSupportStatusRequestWithArrayAsModelWhichHasPaymentRequestAmountSet()
     {
         $action = new PaymentDetailsStatusAction();
-        
+
         $paymentDetails = array(
            'PAYMENTREQUEST_0_AMT' => 1
         );
-        
+
         $request = new BinaryMaskStatusRequest($paymentDetails);
-        
+
         $this->assertTrue($action->supports($request));
     }
 
@@ -59,7 +57,6 @@ class PaymentDetailsStatusActionTest extends \PHPUnit_Framework_TestCase
 
         $this->assertTrue($action->supports($request));
     }
-
 
     /**
      * @test
@@ -98,7 +95,7 @@ class PaymentDetailsStatusActionTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * 
+     *
      * @expectedException \Payum\Exception\RequestNotSupportedException
      */
     public function throwIfNotSupportedRequestGivenAsArgumentForExecute()
@@ -119,9 +116,9 @@ class PaymentDetailsStatusActionTest extends \PHPUnit_Framework_TestCase
             'PAYMENTREQUEST_0_AMT' => 12,
             'L_ERRORCODE0' => Api::L_ERRORCODE_PAYMENT_NOT_AUTHORIZED
         ));
-        
+
         $action->execute($request);
-        
+
         $this->assertTrue($request->isCanceled());
     }
 
@@ -225,7 +222,7 @@ class PaymentDetailsStatusActionTest extends \PHPUnit_Framework_TestCase
             'PAYMENTREQUEST_0_AMT' => 12,
             'CHECKOUTSTATUS' => Api::CHECKOUTSTATUS_PAYMENT_ACTION_FAILED
         ));
-        
+
         $action->execute($request);
 
         $this->assertTrue($request->isFailed());
@@ -282,7 +279,7 @@ class PaymentDetailsStatusActionTest extends \PHPUnit_Framework_TestCase
             'PAYMENTREQUEST_0_PAYMENTSTATUS' => Api::PAYMENTSTATUS_COMPLETED,
             'PAYMENTREQUEST_9_PAYMENTSTATUS' => Api::PAYMENTSTATUS_PROCESSED,
         ));
-        
+
         $action->execute($request);
 
         $this->assertTrue($request->isSuccess());

@@ -1,4 +1,5 @@
 <?php
+
 namespace Payum\Paypal\ExpressCheckout\Nvp\Tests\Model;
 
 class BaseModelTest extends \PHPUnit_Framework_TestCase

@@ -21,7 +21,7 @@ class ApiTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * 
+     *
      * @expectedException \Payum\Exception\InvalidArgumentException
      * @expectedExceptionMessage The username option must be set.
      */
@@ -74,7 +74,7 @@ class ApiTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * 
+     *
      * @expectedException \Payum\Exception\RuntimeException
      * @expectedExceptionMessage The return_url must be set either to FormRequest or to options.
      */
@@ -86,7 +86,7 @@ class ApiTest extends \PHPUnit_Framework_TestCase
             'signature' => 'a_signature',
             'sandbox' => true,
         ));
-        
+
         $api->setExpressCheckout(new FormRequest);
     }
 
@@ -103,12 +103,12 @@ class ApiTest extends \PHPUnit_Framework_TestCase
             'return_url' => 'optionReturnUrl',
             'cancel_url' => 'optionCancelUrl'
         ));
-        
+
         $request = new FormRequest;
         $request->setField('RETURNURL', 'formRequestReturnUrl');
 
         $api->setExpressCheckout($request);
-        
+
         $fields = $request->getFields();
         $this->assertEquals('formRequestReturnUrl', $fields['RETURNURL']);
     }
@@ -217,7 +217,7 @@ class ApiTest extends \PHPUnit_Framework_TestCase
         $api->setExpressCheckout($request);
 
         $fields = $request->getFields();
-        
+
         $this->assertArrayHasKey('METHOD', $fields);
         $this->assertEquals('SetExpressCheckout', $fields['METHOD']);
     }
@@ -241,7 +241,7 @@ class ApiTest extends \PHPUnit_Framework_TestCase
         $api->setExpressCheckout($request);
 
         $fields = $request->getFields();
-        
+
         $this->assertArrayHasKey('USER', $fields);
         $this->assertEquals('the_username', $fields['USER']);
 
@@ -271,7 +271,7 @@ class ApiTest extends \PHPUnit_Framework_TestCase
         $api->setExpressCheckout($request);
 
         $fields = $request->getFields();
-        
+
         $this->assertArrayHasKey('VERSION', $fields);
         $this->assertEquals(Api::VERSION, $fields['VERSION']);
     }
@@ -287,9 +287,9 @@ class ApiTest extends \PHPUnit_Framework_TestCase
             'signature' => 'a_signature',
             'sandbox' => true,
         ));
-        
+
         $this->assertEquals(
-            'https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token=theToken', 
+            'https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token=theToken',
             $api->getAuthorizeTokenUrl('theToken')
         );
     }
@@ -376,7 +376,7 @@ class ApiTest extends \PHPUnit_Framework_TestCase
                 $response->setContent('ACK=Success');
             }))
         ;
-        
+
         return $clientMock;
     }
 }

@@ -21,7 +21,7 @@ class ManageRecurringPaymentsProfileStatusActionTest extends \PHPUnit_Framework_
     /**
      * @test
      */
-    public function couldBeConstructedWithoutAnyArguments()   
+    public function couldBeConstructedWithoutAnyArguments()
     {
         new ManageRecurringPaymentsProfileStatusAction();
     }
@@ -115,7 +115,7 @@ class ManageRecurringPaymentsProfileStatusActionTest extends \PHPUnit_Framework_
         $apiMock
             ->expects($this->once())
             ->method('manageRecurringPaymentsProfileStatus')
-            ->will($this->returnCallback(function($request) use (&$actualRequest){
+            ->will($this->returnCallback(function($request) use (&$actualRequest) {
                 $actualRequest = $request;
 
                 return new Response();

@@ -17,5 +17,5 @@ class PaymentDetails extends BasePaymentDetails
      *
      * @var integer $id
      */
-    protected $id; 
+    protected $id;
 }

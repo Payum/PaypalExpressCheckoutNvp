@@ -9,7 +9,7 @@ class PaymentDetailsTest extends \PHPUnit_Framework_TestCase
     public function shouldBeSubClassOfInstruction()
     {
         $rc = new \ReflectionClass('Payum\Paypal\ExpressCheckout\Nvp\Bridge\Doctrine\Document\PaymentDetails');
-        
+
         $this->assertTrue($rc->isSubclassOf('Payum\Paypal\ExpressCheckout\Nvp\Model\PaymentDetails'));
     }
 }

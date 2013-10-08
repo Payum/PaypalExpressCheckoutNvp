@@ -28,9 +28,9 @@ class GetExpressCheckoutDetailsAction extends  BaseApiAwareAction
 
         $buzzRequest = new FormRequest();
         $buzzRequest->setField('TOKEN', $model['TOKEN']);
-        
+
         $response = $this->api->getExpressCheckoutDetails($buzzRequest);
-        
+
         $model->replace($response);
     }
 
@@ -39,7 +39,7 @@ class GetExpressCheckoutDetailsAction extends  BaseApiAwareAction
      */
     public function supports($request)
     {
-        return 
+        return
             $request instanceof GetExpressCheckoutDetailsRequest &&
             $request->getModel() instanceof \ArrayAccess
         ;

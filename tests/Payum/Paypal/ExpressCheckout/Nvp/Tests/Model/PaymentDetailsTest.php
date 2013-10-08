@@ -1,4 +1,5 @@
 <?php
+
 namespace Payum\Paypal\ExpressCheckout\Nvp\Tests\Model;
 
 use Payum\Paypal\ExpressCheckout\Nvp\Model\PaymentDetails;
@@ -103,7 +104,7 @@ class PaymentDetailsTest extends \PHPUnit_Framework_TestCase
             array('getPaymentrequestPendingreason', 'setPaymentrequestPendingreason', 'PAYMENTREQUEST_0_PENDINGREASON', 'PAYMENTREQUEST_9_PENDINGREASON'),
             array('getLBillingtype', 'setLBillingtype', 'L_BILLINGTYPE0', 'L_BILLINGTYPE9'),
             array('getLBillingagreementdescription', 'setLBillingagreementdescription', 'L_BILLINGAGREEMENTDESCRIPTION0', 'L_BILLINGAGREEMENTDESCRIPTION9'),
-            
+
             array('getLSeveritycoden', 'setLSeveritycoden', 'L_SEVERITYCODE0', 'L_SEVERITYCODE9'),
             array('getLLongmessagen', 'setLLongmessagen', 'L_LONGMESSAGE0', 'L_LONGMESSAGE9'),
             array('getLShortmessagen', 'setLShortmessagen', 'L_SHORTMESSAGE0', 'L_SHORTMESSAGE9'),
@@ -396,13 +397,12 @@ class PaymentDetailsTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals($value, $instruction->getPaymentrequestAmt(0));
         $this->assertEquals($value, $instruction['PAYMENTREQUEST_0_AMT']);
-        
+
         $instructionAsArray = iterator_to_array($instruction);
-        
+
         $this->assertArrayHasKey('PAYMENTREQUEST_0_AMT', $instructionAsArray);
         $this->assertEquals($value, $instructionAsArray['PAYMENTREQUEST_0_AMT']);
     }
-
 
     /**
      * @test

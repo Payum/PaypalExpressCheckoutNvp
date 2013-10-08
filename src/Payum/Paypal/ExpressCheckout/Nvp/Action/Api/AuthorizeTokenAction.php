@@ -12,8 +12,8 @@ class AuthorizeTokenAction extends BaseApiAwareAction
 {
     /**
      * {@inheritdoc}
-     * 
-     * @throws \Payum\Exception\LogicException if the token not set in the instruction.
+     *
+     * @throws \Payum\Exception\LogicException              if the token not set in the instruction.
      * @throws \Payum\Request\RedirectUrlInteractiveRequest if authorization required.
      */
     public function execute($request)
@@ -22,12 +22,12 @@ class AuthorizeTokenAction extends BaseApiAwareAction
         if (false == $this->supports($request)) {
             throw RequestNotSupportedException::createActionNotSupported($this, $request);
         }
-        
+
         $model = ArrayObject::ensureArrayObject($request->getModel());
         if (false == $model['TOKEN']) {
             throw new LogicException('The TOKEN must be set. Have you executed SetExpressCheckoutAction?');
         }
-          
+
         if (false == $model['PAYERID'] || $request->isForced()) {
             throw new RedirectUrlInteractiveRequest(
                 $this->api->getAuthorizeTokenUrl($model['TOKEN'])
@@ -40,7 +40,7 @@ class AuthorizeTokenAction extends BaseApiAwareAction
      */
     public function supports($request)
     {
-        return 
+        return
             $request instanceof AuthorizeTokenRequest &&
             $request->getModel() instanceof \ArrayAccess
         ;
