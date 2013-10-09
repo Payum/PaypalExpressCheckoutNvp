@@ -115,7 +115,7 @@ abstract class BaseModel implements \ArrayAccess, \IteratorAggregate
      */
     protected function set($property, $value, $n = null, $m = null)
     {
-        $currentValue = $property;
+        $currentValue = $this->$property;
         if (null !== $n && null !== $m) {
             if (false == isset($currentValue[$n])) {
                 $currentValue[$n] = array();
@@ -138,7 +138,7 @@ abstract class BaseModel implements \ArrayAccess, \IteratorAggregate
      */
     protected function get($property, $n = false, $m = false)
     {
-        $currentValue = $property;
+        $currentValue = $this->$property;
         if (false !== $n && false !== $m) {
             if (null === $n && null === $m) {
                 return $currentValue;
