@@ -38,7 +38,7 @@ class CreateRecurringPaymentProfileAction extends BaseApiAwareAction
             $buzzRequest->setFields((array) $model);
 
             $response = $this->api->createRecurringPaymentsProfile($buzzRequest);
-            
+
             $model->replace($response);
         } catch (HttpResponseAckNotSuccessException $e) {
             $model->replace($e->getResponse());
@@ -50,7 +50,7 @@ class CreateRecurringPaymentProfileAction extends BaseApiAwareAction
      */
     public function supports($request)
     {
-        return 
+        return
             $request instanceof CreateRecurringPaymentProfileRequest &&
             $request->getModel() instanceof \ArrayAccess
         ;

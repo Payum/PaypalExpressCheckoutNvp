@@ -31,7 +31,7 @@ class GetRecurringPaymentsProfileDetailsAction extends BaseApiAwareAction
             $buzzRequest->setField('PROFILEID', $model['PROFILEID']);
 
             $response = $this->api->getRecurringPaymentsProfileDetails($buzzRequest);
-            
+
             $model->replace($response);
         } catch (HttpResponseAckNotSuccessException $e) {
             $model->replace($e->getResponse());
@@ -43,7 +43,7 @@ class GetRecurringPaymentsProfileDetailsAction extends BaseApiAwareAction
      */
     public function supports($request)
     {
-        return 
+        return
             $request instanceof GetRecurringPaymentsProfileDetailsRequest &&
             $request->getModel() instanceof \ArrayAccess
         ;

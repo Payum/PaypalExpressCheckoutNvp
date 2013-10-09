@@ -12,12 +12,12 @@ class GetTransactionDetailsRequest extends BaseModelRequest
 
     /**
      * @param mixed $model
-     * @param int $paymentRequestN
+     * @param int   $paymentRequestN
      */
     public function __construct($model, $paymentRequestN)
     {
         parent::__construct($model);
-        
+
         $this->paymentRequestN = $paymentRequestN;
     }
 

@@ -7,10 +7,10 @@ use Payum\Exception\LogicException;
 abstract class BaseModel implements \ArrayAccess, \IteratorAggregate
 {
     /**
-     * @return array 
+     * @return array
      */
     abstract protected function getSupportedToNvpProperties();
-    
+
     /**
      * @deprecated since 0.3 move the logic to offsetSet
      *
@@ -21,7 +21,7 @@ abstract class BaseModel implements \ArrayAccess, \IteratorAggregate
         if (false == (is_array($nvp) || $nvp instanceof \Traversable)) {
             throw new InvalidArgumentException('Invalid nvp argument. Should be an array of an object implemented \Traversable interface.');
         }
-        
+
         $supportedFields = $this->getSupportedToNvpProperties();
 
         foreach ($nvp as $name => $value) {
@@ -30,7 +30,7 @@ abstract class BaseModel implements \ArrayAccess, \IteratorAggregate
 
             if ('shiptostreet2' === $property && in_array($property, $supportedFields)) {
                 $this->$property = $value;
-                
+
                 continue;
             }
 
@@ -45,10 +45,8 @@ abstract class BaseModel implements \ArrayAccess, \IteratorAggregate
 
                 continue;
             }
-            
+
             $property = preg_replace('/\d/', 'nnn', $property, 1);
-            
-            
 
             if (false === strpos($name, 'SHIPTOSTREET2')) {
                 $property = preg_replace('/\d/', 'mmm', $property, 1);
@@ -110,8 +108,8 @@ abstract class BaseModel implements \ArrayAccess, \IteratorAggregate
     }
 
     /**
-     * @param string $property
-     * @param mixed $value
+     * @param string   $property
+     * @param mixed    $value
      * @param int|null $n
      * @param int|null $m
      */
@@ -124,7 +122,7 @@ abstract class BaseModel implements \ArrayAccess, \IteratorAggregate
             }
 
             $currentValue[$n][$m] = $value;
-        } else if (null !== $n) {
+        } elseif (null !== $n) {
             $currentValue[$n] = $value;
         }
 
@@ -133,9 +131,9 @@ abstract class BaseModel implements \ArrayAccess, \IteratorAggregate
 
     /**
      * @param string $property
-     * @param bool $n
-     * @param bool $m
-     * 
+     * @param bool   $n
+     * @param bool   $m
+     *
      * @return mixed
      */
     protected function get($property, $n = false, $m = false)

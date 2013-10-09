@@ -30,9 +30,9 @@ class SetExpressCheckoutAction extends BaseApiAwareAction
 
         $buzzRequest = new FormRequest;
         $buzzRequest->setFields((array) $model);
-        
+
         $response = $this->api->setExpressCheckout($buzzRequest);
-        
+
         $model->replace($response);
     }
 
@@ -41,7 +41,7 @@ class SetExpressCheckoutAction extends BaseApiAwareAction
      */
     public function supports($request)
     {
-        return 
+        return
             $request instanceof SetExpressCheckoutRequest &&
             $request->getModel() instanceof \ArrayAccess
         ;

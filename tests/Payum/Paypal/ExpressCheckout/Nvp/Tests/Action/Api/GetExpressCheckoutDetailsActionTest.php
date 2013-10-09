@@ -14,14 +14,14 @@ class GetExpressCheckoutDetailsActionTest extends \PHPUnit_Framework_TestCase
     public function shouldBeSubClassOfBaseApiAwareAction()
     {
         $rc = new \ReflectionClass('Payum\Paypal\ExpressCheckout\Nvp\Action\Api\GetExpressCheckoutDetailsAction');
-        
+
         $this->assertTrue($rc->isSubclassOf('Payum\Paypal\ExpressCheckout\Nvp\Action\Api\BaseApiAwareAction'));
     }
 
     /**
      * @test
      */
-    public function couldBeConstructedWithoutAnyArguments()   
+    public function couldBeConstructedWithoutAnyArguments()
     {
         new GetExpressCheckoutDetailsAction();
     }
@@ -32,7 +32,7 @@ class GetExpressCheckoutDetailsActionTest extends \PHPUnit_Framework_TestCase
     public function shouldSupportGetExpressCheckoutDetailsRequestAndArrayAccessAsModel()
     {
         $action = new GetExpressCheckoutDetailsAction();
-        
+
         $this->assertTrue(
             $action->supports(new GetExpressCheckoutDetailsRequest($this->getMock('ArrayAccess')))
         );
@@ -60,7 +60,7 @@ class GetExpressCheckoutDetailsActionTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * 
+     *
      * @expectedException \Payum\Exception\RequestNotSupportedException
      */
     public function throwIfNotSupportedRequestGivenAsArgumentForExecute()
@@ -79,7 +79,7 @@ class GetExpressCheckoutDetailsActionTest extends \PHPUnit_Framework_TestCase
     public function throwIfTokenNotSetInModel()
     {
         $action = new GetExpressCheckoutDetailsAction();
-        
+
         $request = new GetExpressCheckoutDetailsRequest(array());
 
         $action->execute($request);
@@ -91,29 +91,29 @@ class GetExpressCheckoutDetailsActionTest extends \PHPUnit_Framework_TestCase
     public function shouldCallApiGetExpressCheckoutDetailsMethodWithExpectedRequiredArguments()
     {
         $actualRequest = null;
-        
+
         $apiMock = $this->createApiMock();
         $apiMock
             ->expects($this->once())
             ->method('getExpressCheckoutDetails')
-            ->will($this->returnCallback(function($request) use (&$actualRequest){
+            ->will($this->returnCallback(function($request) use (&$actualRequest) {
                 $actualRequest = $request;
 
                 return new Response();
             }))
         ;
-        
+
         $action = new GetExpressCheckoutDetailsAction();
         $action->setApi($apiMock);
 
         $request = new GetExpressCheckoutDetailsRequest(array(
-            'TOKEN' => 'theToken', 
+            'TOKEN' => 'theToken',
         ));
 
         $action->execute($request);
-        
+
         $this->assertInstanceOf('Buzz\Message\Form\FormRequest', $actualRequest);
-        
+
         $fields = $actualRequest->getFields();
 
         $this->assertArrayHasKey('TOKEN', $fields);
@@ -135,7 +135,7 @@ class GetExpressCheckoutDetailsActionTest extends \PHPUnit_Framework_TestCase
                     'FIRSTNAME'=> 'theFirstname',
                     'EMAIL' => 'the@example.com'
                 )));
-                
+
                 return $response;
             }))
         ;

@@ -18,7 +18,7 @@ class RecurringPaymentDetailsStatusAction implements ActionInterface
         if (false == $this->supports($request)) {
             throw RequestNotSupportedException::createActionNotSupported($this, $request);
         }
-        
+
         $model = ArrayObject::ensureArrayObject($request->getModel());
 
         foreach (range(0, 9) as $index) {
@@ -67,7 +67,7 @@ class RecurringPaymentDetailsStatusAction implements ActionInterface
 
         if (Api::PROFILESTATUS_PENDINGPROFILE == $model['PROFILESTATUS']) {
             $request->markPending();
-            
+
             return;
         }
 

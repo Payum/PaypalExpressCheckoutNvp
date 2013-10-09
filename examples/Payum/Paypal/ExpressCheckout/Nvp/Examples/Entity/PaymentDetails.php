@@ -1,4 +1,5 @@
 <?php
+
 namespace Payum\Paypal\ExpressCheckout\Nvp\Examples\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -17,5 +18,5 @@ class PaymentDetails extends BasePaymentDetails
      *
      * @var integer $id
      */
-    protected $id; 
+    protected $id;
 }

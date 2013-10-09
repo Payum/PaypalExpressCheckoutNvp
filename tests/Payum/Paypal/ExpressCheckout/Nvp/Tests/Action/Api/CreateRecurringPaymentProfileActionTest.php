@@ -110,7 +110,7 @@ class CreateRecurringPaymentProfileActionTest extends \PHPUnit_Framework_TestCas
         $apiMock
             ->expects($this->once())
             ->method('createRecurringPaymentsProfile')
-            ->will($this->returnCallback(function($request) use (&$actualRequest){
+            ->will($this->returnCallback(function($request) use (&$actualRequest) {
                 $actualRequest = $request;
 
                 return new Response();
@@ -220,7 +220,7 @@ class CreateRecurringPaymentProfileActionTest extends \PHPUnit_Framework_TestCas
 
         $this->assertArrayHasKey('PROFILEID', $request->getModel());
         $this->assertEquals('theId', $request->getModel()['PROFILEID']);
-        
+
         $this->assertArrayHasKey('PROFILESTATUS', $request->getModel());
         $this->assertEquals('theStatus', $request->getModel()['PROFILESTATUS']);
     }

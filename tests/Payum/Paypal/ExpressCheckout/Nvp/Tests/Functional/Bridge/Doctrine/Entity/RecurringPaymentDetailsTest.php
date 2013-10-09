@@ -17,7 +17,7 @@ class RecurringPaymentDetailsTest extends OrmTest
 
         $this->assertEmpty($schemaValidator->validateMapping());
     }
-    
+
     /**
      * @test
      */
@@ -27,13 +27,13 @@ class RecurringPaymentDetailsTest extends OrmTest
         $recurringPaymentDetails->setToken('foo');
         $recurringPaymentDetails->setAmt(10);
         $recurringPaymentDetails->setDesc('aDesc');
-        
+
         //guard
         $this->assertNull($recurringPaymentDetails->getId());
-        
+
         $this->em->persist($recurringPaymentDetails);
         $this->em->flush();
-        
+
         $this->assertGreaterThan(0, $recurringPaymentDetails->getId());
     }
 
@@ -47,18 +47,18 @@ class RecurringPaymentDetailsTest extends OrmTest
         $recurringPaymentDetails->setAmt($expectedAmount = 10);
         $recurringPaymentDetails->setDesc($expectedDescription = 'aDesc');
         $recurringPaymentDetails->setProfileid($expectedProfileid = 123);
-        
+
         $this->em->persist($recurringPaymentDetails);
         $this->em->flush();
-        
+
         $id = $recurringPaymentDetails->getId();
 
         $this->em->clear();
-        
+
         $foundInstruction = $this->em->find(get_class($recurringPaymentDetails), $id);
-        
+
         $this->assertNotSame($recurringPaymentDetails, $foundInstruction);
-        
+
         $this->assertEquals($expectedToken, $foundInstruction->getToken());
         $this->assertEquals($expectedProfileid, $foundInstruction->getProfileid());
         $this->assertEquals($expectedAmount, $foundInstruction->getAmt());

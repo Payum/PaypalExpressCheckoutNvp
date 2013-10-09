@@ -18,14 +18,14 @@ class PaymentDetailsSyncActionTest extends \PHPUnit_Framework_TestCase
     public function shouldBeSubClassOfPaymentAwareAction()
     {
         $rc = new \ReflectionClass('Payum\Paypal\ExpressCheckout\Nvp\Action\PaymentDetailsSyncAction');
-        
+
         $this->assertTrue($rc->isSubclassOf('Payum\Action\PaymentAwareAction'));
     }
 
     /**
      * @test
      */
-    public function couldBeConstructedWithoutAnyArguments()   
+    public function couldBeConstructedWithoutAnyArguments()
     {
         new PaymentDetailsSyncAction();
     }
@@ -40,7 +40,7 @@ class PaymentDetailsSyncActionTest extends \PHPUnit_Framework_TestCase
         $paymentDetails = array(
             'PAYMENTREQUEST_0_AMT' => 12
         );
-        
+
         $request = new SyncRequest($paymentDetails);
 
         $this->assertTrue($action->supports($request));
@@ -87,7 +87,7 @@ class PaymentDetailsSyncActionTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * 
+     *
      * @expectedException \Payum\Exception\RequestNotSupportedException
      */
     public function throwIfNotSupportedRequestGivenAsArgumentForExecute()
@@ -107,14 +107,14 @@ class PaymentDetailsSyncActionTest extends \PHPUnit_Framework_TestCase
             ->expects($this->never())
             ->method('execute')
         ;
-        
+
         $action = new PaymentDetailsSyncAction();
         $action->setPayment($paymentMock);
 
         $request = new SyncRequest(array(
             'PAYMENTREQUEST_0_AMT' => 12
         ));
-        
+
         $action->execute($request);
     }
 
@@ -177,11 +177,11 @@ class PaymentDetailsSyncActionTest extends \PHPUnit_Framework_TestCase
             'L_ERRORCODE0' => 'foo_error',
             'L_ERRORCODE1' => 'bar_error',
         )));
-        
+
         $ackFailedException = new HttpResponseAckNotSuccessException;
         $ackFailedException->setRequest(new FormRequest());
         $ackFailedException->setResponse($response);
-        
+
         $paymentMock = $this->createPaymentMock();
         $paymentMock
             ->expects($this->at(0))
@@ -203,7 +203,7 @@ class PaymentDetailsSyncActionTest extends \PHPUnit_Framework_TestCase
         $this->assertArrayHasKey('L_ERRORCODE1', $request->getModel());
         $this->assertEquals('bar_error', $request->getModel()['L_ERRORCODE1']);
     }
-    
+
     /**
      * @return \PHPUnit_Framework_MockObject_MockObject|\Payum\PaymentInterface
      */

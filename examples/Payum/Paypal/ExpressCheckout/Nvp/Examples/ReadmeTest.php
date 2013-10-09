@@ -26,7 +26,7 @@ class ReadmeTest extends \PHPUnit_Framework_TestCase
         //@testo:uncomment:use Payum\Paypal\ExpressCheckout\Nvp\PaymentFactory;
         //@testo:uncomment:use Payum\Request\CaptureRequest;
         //@testo:uncomment:use Payum\Request\RedirectUrlInteractiveRequest;
-        
+
         $payment = PaymentFactory::create(new Api(new Curl, array(
             'username' => 'a_username',
             'password' => 'a_pasword',
@@ -40,21 +40,21 @@ class ReadmeTest extends \PHPUnit_Framework_TestCase
             'RETURNURL' => 'http://foo.com/finishPayment',
             'CANCELURL' => 'http://foo.com/finishPayment',
         ));
-        
+
         if ($interactiveRequest = $payment->execute($capture, $expectsInteractive = true)) {
             //save your models somewhere.
             if ($interactiveRequest instanceof RedirectUrlInteractiveRequest) {
                 header('Location: '.$interactiveRequest->getUrl());
                 exit;
             }
-            
+
             throw $interactiveRequest;
         }
         //@testo:end
-        
+
         $this->assertArrayHasKey('L_LONGMESSAGE0', $capture->getModel());
         $this->assertEquals('Security header is not valid', $capture->getModel()['L_LONGMESSAGE0']);
-        
+
         return array(
             $payment,
             $capture
@@ -67,14 +67,14 @@ class ReadmeTest extends \PHPUnit_Framework_TestCase
     public function doDigitalGoodsCapture()
     {
         //@testo:source
-        
+
         $capture = new CaptureRequest(array(
-            
-            // ... 
-            
+
+            // ...
+
             'NOSHIPPING' => Api::NOSHIPPING_NOT_DISPLAY_ADDRESS,
             'REQCONFIRMSHIPPING' => Api::REQCONFIRMSHIPPING_NOT_REQUIRED,
-            'L_PAYMENTREQUEST_0_ITEMCATEGORY0' => Api::PAYMENTREQUEST_ITERMCATEGORY_DIGITAL, 
+            'L_PAYMENTREQUEST_0_ITEMCATEGORY0' => Api::PAYMENTREQUEST_ITERMCATEGORY_DIGITAL,
             'L_PAYMENTREQUEST_0_NAME0' => 'Awesome e-book',
             'L_PAYMENTREQUEST_0_DESC0' => 'Great stories of America.',
             'L_PAYMENTREQUEST_0_AMT0' => 10,
@@ -100,10 +100,10 @@ class ReadmeTest extends \PHPUnit_Framework_TestCase
         //@testo:start
         //@testo:source
         //@testo:uncomment:use Payum\Request\BinaryMaskStatusRequest;
-        
+
         $status = new BinaryMaskStatusRequest($capture->getModel());
         $payment->execute($status);
-        
+
         if ($status->isSuccess()) {
             //@testo:uncomment:echo 'We are done';
         }
@@ -122,7 +122,7 @@ class ReadmeTest extends \PHPUnit_Framework_TestCase
         //@testo:source
         //@testo:uncomment:use Payum\Request\CaptureRequest;
         //@testo:uncomment:use Payum\Paypal\ExpressCheckout\Nvp\Api;
-        
+
         $captureBillingAgreement = new CaptureRequest(array(
             'PAYMENTREQUEST_0_AMT' => 0,
             'RETURNURL' => 'http://foo.com/finishPayment',
@@ -139,13 +139,13 @@ class ReadmeTest extends \PHPUnit_Framework_TestCase
         $billingAgreementDetails['EMAIL'] = 'foo@example.com';
 
         $captureBillingAgreement->setModel($billingAgreementDetails);
-        
+
         return $captureBillingAgreement;
     }
 
     /**
      * @test
-     * 
+     *
      * @depends createBillingAgrement
      */
     public function createRecurringPaymnt($captureBillingAgreement)
@@ -156,13 +156,13 @@ class ReadmeTest extends \PHPUnit_Framework_TestCase
             'signature' => 'a_signature',
             'sandbox' => true
         )));
-        
+
         //@testo:start
         //@testo:source
         //@testo:uncomment:use Payum\Paypal\ExpressCheckout\Nvp\Api;
         //@testo:uncomment:use Payum\Paypal\ExpressCheckout\Nvp\Request\Api\CreateRecurringPaymentProfileRequest;
         //@testo:uncomment:use Payum\Request\SyncRequest;
-        
+
         $billingAgreementDetails = $captureBillingAgreement->getModel();
 
         $recurringPaymentDetails = new \ArrayObject(array(
@@ -192,7 +192,7 @@ class ReadmeTest extends \PHPUnit_Framework_TestCase
 
         //@testo:uncomment:echo "Hmm. We are not. Let's check other possible statuses!";
         //@testo:end
-        
+
         $this->assertTrue($recurringPaymentStatus->isFailed());
     }
 
@@ -209,9 +209,9 @@ class ReadmeTest extends \PHPUnit_Framework_TestCase
         //@testo:source
         //@testo:uncomment:use Payum\Paypal\ExpressCheckout\Nvp\Examples\Model\AwesomeCart;
         //@testo:uncomment:use Payum\Paypal\ExpressCheckout\Nvp\Examples\Action\CaptureAwesomeCartAction;
-        
+
         //...
-        
+
         $cart = new AwesomeCart;
 
         $payment->addAction(new CaptureAwesomeCartAction);
@@ -236,7 +236,7 @@ class ReadmeTest extends \PHPUnit_Framework_TestCase
         //@testo:uncomment:echo "Hmm. We are not. Let's check other possible statuses!";
         //@testo:end
         $this->assertTrue($status->isFailed());
-        
+
         $paymentDetails = $status->getModel();
         $this->assertEquals('Security header is not valid', $paymentDetails['L_LONGMESSAGE0']);
     }

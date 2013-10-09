@@ -17,7 +17,7 @@ class PaymentDetailsTest extends OrmTest
 
         $this->assertEmpty($schemaValidator->validateMapping());
     }
-    
+
     /**
      * @test
      */
@@ -25,13 +25,13 @@ class PaymentDetailsTest extends OrmTest
     {
         $paymentDetails = new PaymentDetails;
         $paymentDetails->setToken('foo');
-        
+
         //guard
         $this->assertNull($paymentDetails->getId());
-        
+
         $this->em->persist($paymentDetails);
         $this->em->flush();
-        
+
         $this->assertGreaterThan(0, $paymentDetails->getId());
     }
 
@@ -44,18 +44,18 @@ class PaymentDetailsTest extends OrmTest
         $paymentDetails->setToken($expectedToken = 'theToken');
         $paymentDetails->setPaymentrequestAmt(0, $expectedAmount = 123.15);
         $paymentDetails->setPaymentrequestPaymentaction(0, $expectedAction = 'thePaymentAction');
-        
+
         $this->em->persist($paymentDetails);
         $this->em->flush();
-        
+
         $id = $paymentDetails->getId();
 
         $this->em->clear();
-        
+
         $foundInstruction = $this->em->find(get_class($paymentDetails), $id);
-        
+
         $this->assertNotSame($paymentDetails, $foundInstruction);
-        
+
         $this->assertEquals($expectedToken, $foundInstruction->getToken());
         $this->assertEquals($expectedAmount, $foundInstruction->getPaymentrequestAmt(0));
         $this->assertEquals($expectedAction, $foundInstruction->getPaymentrequestPaymentaction(0));

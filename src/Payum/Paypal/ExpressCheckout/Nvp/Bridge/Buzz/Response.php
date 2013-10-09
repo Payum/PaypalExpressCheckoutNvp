@@ -9,14 +9,14 @@ class Response extends BaseResponse implements \ArrayAccess, \IteratorAggregate
      * @var array
      */
     protected $nvp;
-    
+
     /**
      * {@inheritdoc}
      */
     public function offsetExists($offset)
     {
         $this->parseNvp();
-        
+
         return isset($this->nvp[$offset]);
     }
 
@@ -36,7 +36,7 @@ class Response extends BaseResponse implements \ArrayAccess, \IteratorAggregate
     public function offsetSet($offset, $value)
     {
         $this->parseNvp();
-        
+
         $this->nvp[$offset] = $value;
     }
 
@@ -49,17 +49,17 @@ class Response extends BaseResponse implements \ArrayAccess, \IteratorAggregate
 
         unset($this->nvp[$offset]);
     }
-    
+
     /**
      * {@inheritdoc}
      */
     public function getIterator()
     {
         $this->parseNvp();
-        
+
         return new \ArrayIterator($this->nvp);
     }
-    
+
     /**
      * @return array
      */

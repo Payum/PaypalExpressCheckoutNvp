@@ -5,11 +5,11 @@
                         http://doctrine-project.org/schemas/odm/doctrine-mongo-mapping.xsd">
 
     <mapped-superclass name="Payum\Paypal\ExpressCheckout\Nvp\Bridge\Doctrine\Document\RecurringPaymentDetails">
-        
+
         <field name="token" fieldName="token" type="string" />
 
         <field name="desc" fieldName="`desc`" type="string" />
-        
+
         <field name="amt" fieldName="amt" type="string" />
 
         <field name="status" fieldName="`status`" type="string" />
@@ -17,9 +17,9 @@
         <field name="profilestatus" fieldName="profile_status" type="string" />
 
         <field name="email" fieldName="email" type="string" />
-        
+
         <field name="currencycode" fieldName="currency_code" type="string" />
-        
+
         <field name="profileid" fieldName="profile_id" type="string" />
 
         <field name="profilestartdate" fieldName="profile_start_date" type="string" />
@@ -27,7 +27,7 @@
         <field name="billingperiod" fieldName="billing_period" type="string" />
 
         <field name="billingfrequency" fieldName="billing_frequency" type="string" />
-        
+
         <field name="l_errorcodennn" fieldName="l_errorcodes" type="hash"  />
 
         <field name="l_shortmessagennn" fieldName="l_shortmessages" type="hash"  />

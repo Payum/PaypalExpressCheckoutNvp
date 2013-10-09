@@ -1,8 +1,6 @@
 <?php
 namespace Payum\Paypal\ExpressCheckout\Nvp\Action;
 
-use Buzz\Message\Form\FormRequest;
-
 use Payum\Bridge\Spl\ArrayObject;
 use Payum\Paypal\ExpressCheckout\Nvp\Request\Api\GetRecurringPaymentsProfileDetailsRequest;
 use Payum\Request\SyncRequest;
@@ -20,13 +18,13 @@ class RecurringPaymentDetailsSyncAction extends PaymentAwareAction
         if (false == $this->supports($request)) {
             throw RequestNotSupportedException::createActionNotSupported($this, $request);
         }
-        
+
         $model = ArrayObject::ensureArrayObject($request->getModel());
 
         if (false == $model['PROFILEID']) {
             return;
         }
-        
+
         $this->payment->execute(new GetRecurringPaymentsProfileDetailsRequest($model));
     }
 

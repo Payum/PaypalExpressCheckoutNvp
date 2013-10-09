@@ -1,4 +1,5 @@
 <?php
+
 namespace Payum\Paypal\ExpressCheckout\Nvp\Tests\Request\Api;
 
 use Payum\Paypal\ExpressCheckout\Nvp\Request\Api\AuthorizeTokenRequest;
@@ -11,7 +12,7 @@ class AuthorizeTokenRequestTest extends \PHPUnit_Framework_TestCase
     public function shouldBeSubClassOfBaseModelRequest()
     {
         $rc = new \ReflectionClass('Payum\Paypal\ExpressCheckout\Nvp\Request\Api\AuthorizeTokenRequest');
-        
+
         $this->assertTrue($rc->isSubclassOf('Payum\Request\BaseModelRequest'));
     }
 
@@ -21,7 +22,7 @@ class AuthorizeTokenRequestTest extends \PHPUnit_Framework_TestCase
     public function shouldAllowGetDefaultForceSetToFalseByDefault()
     {
         $request = new AuthorizeTokenRequest(new \stdClass);
-        
+
         $this->assertFalse($request->isForced());
     }
 

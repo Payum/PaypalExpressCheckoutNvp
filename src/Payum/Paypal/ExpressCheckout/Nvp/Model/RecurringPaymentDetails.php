@@ -9,101 +9,101 @@ class RecurringPaymentDetails extends BaseModel
     protected $token;
 
     protected $status;
-    
+
     protected $subscribername;
-    
+
     protected $profilestartdate;
-    
+
     protected $profilereference;
-    
+
     protected $desc;
-    
+
     protected $maxfailedpayments;
-    
+
     protected $autobilloutamt;
-    
+
     protected $billingperiod;
-    
+
     protected $billingfrequency;
-    
+
     protected $totalbillingcycles;
-    
+
     protected $amt;
-    
+
     protected $trialbillingperiod;
-    
+
     protected $trialbillingfrequency;
-    
+
     protected $trialtotalbillingcycles;
-    
+
     protected $trialamt;
-    
+
     protected $currencycode;
-    
+
     protected $shippingamt;
-    
+
     protected $taxamt;
-    
+
     protected $initamt;
-    
+
     protected $failedinitamtaction;
-    
+
     protected $shiptoname;
-    
+
     protected $shiptostreet;
-    
+
     protected $shiptostreet2;
-    
+
     protected $shiptocity;
-    
+
     protected $shiptostate;
-    
+
     protected $shiptozip;
-    
+
     protected $shiptocountry;
-    
+
     protected $shiptophonenum;
-    
+
     protected $creditcardtype;
-    
+
     protected $acct;
-    
+
     protected $expdate;
-    
+
     protected $cvv2;
-    
+
     protected $startdate;
-    
+
     protected $issuenumber;
-    
+
     protected $email;
-    
+
     protected $payerid;
-    
+
     protected $payerstatus;
-    
+
     protected $countrycode;
-    
+
     protected $business;
-    
+
     protected $salutation;
-    
+
     protected $firstname;
 
     protected $middlename;
-    
+
     protected $lastname;
-    
+
     protected $suffix;
-    
+
     protected $street;
-    
+
     protected $street2;
-    
+
     protected $city;
-    
+
     protected $state;
-    
+
     protected $zip;
 
     protected $profileid;
@@ -121,55 +121,55 @@ class RecurringPaymentDetails extends BaseModel
     protected $ack;
 
     protected $aggregateamount;
-    
+
     protected $aggregateoptionalamount;
-    
+
     protected $finalpaymentduedate;
-    
+
     protected $addressstatus;
 
     protected $regularbillingperiod;
-    
+
     protected $regularbillingfrequency;
 
     protected $regulartotalbillingcycles;
-    
+
     protected $regularamt;
-    
+
     protected $regularshippingamt;
 
     protected $regulartaxamt;
-    
+
     protected $regularcurrencycode;
-    
+
     protected $nextbillingdate;
-    
+
     protected $numcylescompleted;
-    
+
     protected $numcyclesremaining;
 
     protected $outstandingbalance;
-    
+
     protected $failedpaymentcount;
 
     protected $lastpaymentdate;
 
     protected $lastpaymentamt;
-    
+
     protected $action;
-    
+
     protected $note;
-    
+
     protected $l_paymentrequest_nnn_itemcategorymmm = array();
-    
+
     protected $l_paymentrequest_nnn_namemmm = array();
 
     protected $l_paymentrequest_nnn_descmmm = array();
 
     protected $l_paymentrequest_nnn_amtmmm = array();
-    
+
     protected $l_paymentrequest_nnn_numbermmm = array();
-    
+
     protected $l_paymentrequest_nnn_qtymmm = array();
 
     protected $l_paymentrequest_nnn_taxamtmmm = array();

@@ -4,7 +4,7 @@ namespace Payum\Paypal\ExpressCheckout\Nvp\Examples\Action;
 use Payum\Action\PaymentAwareAction;
 use Payum\Request\CaptureRequest;
 use Payum\Exception\RequestNotSupportedException;
-use Payum\Paypal\ExpressCheckout\Nvp\Examples\Model\AwesomeCart; 
+use Payum\Paypal\ExpressCheckout\Nvp\Examples\Model\AwesomeCart;
 
 class CaptureAwesomeCartAction extends PaymentAwareAction
 {

@@ -13,7 +13,7 @@ class ApiTest extends \PHPUnit_Framework_TestCase
      * @var \Payum\Paypal\ExpressCheckout\Nvp\Api
      */
     protected $api;
-    
+
     public function setUp()
     {
         if (false == isset($GLOBALS['__PAYUM_PAYPAL_EXPRESS_CHECKOUT_NVP_API_ACCOUNT'])) {
@@ -31,7 +31,7 @@ class ApiTest extends \PHPUnit_Framework_TestCase
         if (false == extension_loaded('curl')) {
             $this->markTestSkipped('Curl extension is required to run this tests.');
         }
-        
+
         $this->api = new Api(new Curl, array(
             'username' => $GLOBALS['__PAYUM_PAYPAL_EXPRESS_CHECKOUT_NVP_API_USERNAME'],
             'password' => $GLOBALS['__PAYUM_PAYPAL_EXPRESS_CHECKOUT_NVP_API_PASSWORD'],
@@ -51,7 +51,7 @@ class ApiTest extends \PHPUnit_Framework_TestCase
         $request->setField('PAYMENTREQUEST_0_AMT', 1);
 
         $response = $this->api->setExpressCheckout($request);
-    
+
         $this->assertEquals(Api::ACK_SUCCESS, $response['ACK']);
         $this->assertNotEmpty($response['TOKEN']);
         $this->assertNotEmpty($response['TIMESTAMP']);
@@ -95,23 +95,23 @@ class ApiTest extends \PHPUnit_Framework_TestCase
 
         //gurad
         $this->assertEquals(Api::ACK_SUCCESS, $setExpressCheckoutResponse['ACK']);
-        
-        //we cannot test success scenario of this request. So at least we can test the failure one.  
+
+        //we cannot test success scenario of this request. So at least we can test the failure one.
         try {
             $request = new FormRequest();
             $request->setField('TOKEN', $setExpressCheckoutResponse['TOKEN']);
-            
+
             $this->api->doExpressCheckoutPayment($request);
         } catch (HttpResponseAckNotSuccessException $e) {
             $response = $e->getResponse();
-            
+
             $this->assertEquals(Api::ACK_FAILURE, $response['ACK']);
             $this->assertEquals('Order total is missing.', $response['L_LONGMESSAGE0']);
             $this->assertEquals('The PayerID value is invalid.', $response['L_LONGMESSAGE1']);
-            
+
             return;
         }
-        
+
         $this->fail('Expected `HttpResponseAckNotSuccessException` exception.');
     }
 
@@ -120,7 +120,7 @@ class ApiTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldSuccessfullyCallGetTransactionDetails()
     {
-        //we cannot test success scenario of this request. So at least we can test the failure one.  
+        //we cannot test success scenario of this request. So at least we can test the failure one.
         try {
             $request = new FormRequest();
             $request->setField('TRANSACTIONID', 'aTransId');
@@ -143,7 +143,7 @@ class ApiTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldReturnFailedAckOnCreateRecurringPaymentsProfileWithoutToken()
     {
-        //we cannot test success scenario of this request. So at least we can test the failure one.  
+        //we cannot test success scenario of this request. So at least we can test the failure one.
         try {
             $this->api->createRecurringPaymentsProfile(new FormRequest());
         } catch (HttpResponseAckNotSuccessException $e) {
@@ -171,12 +171,12 @@ class ApiTest extends \PHPUnit_Framework_TestCase
         $setExpressCheckoutResponse = $this->api->setExpressCheckout($request);
 
         //gurad
-        $this->assertEquals(Api::ACK_SUCCESS, $setExpressCheckoutResponse['ACK']);        
-        
+        $this->assertEquals(Api::ACK_SUCCESS, $setExpressCheckoutResponse['ACK']);
+
         try {
             $request = new FormRequest();
             $request->setField('TOKEN', $setExpressCheckoutResponse['TOKEN']);
-            
+
             $this->api->createRecurringPaymentsProfile($request);
         } catch (HttpResponseAckNotSuccessException $e) {
             $response = $e->getResponse();

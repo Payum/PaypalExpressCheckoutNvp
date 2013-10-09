@@ -22,7 +22,7 @@ class GetTransactionDetailsActionTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      */
-    public function couldBeConstructedWithoutAnyArguments()   
+    public function couldBeConstructedWithoutAnyArguments()
     {
         new GetTransactionDetailsAction();
     }
@@ -33,9 +33,9 @@ class GetTransactionDetailsActionTest extends \PHPUnit_Framework_TestCase
     public function shouldSupportGetTransactionDetailsRequestAndArrayAccessAsModel()
     {
         $action = new GetTransactionDetailsAction();
-        
+
         $request = new GetTransactionDetailsRequest($this->getMock('ArrayAccess'), $paymentRequestN = 5);
-        
+
         $this->assertTrue($action->supports($request));
     }
 
@@ -61,7 +61,7 @@ class GetTransactionDetailsActionTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * 
+     *
      * @expectedException \Payum\Exception\RequestNotSupportedException
      */
     public function throwIfNotSupportedRequestGivenAsArgumentForExecute()
@@ -80,7 +80,7 @@ class GetTransactionDetailsActionTest extends \PHPUnit_Framework_TestCase
     public function throwIfZeroPaymentRequestTransactionIdNotSetInModel()
     {
         $action = new GetTransactionDetailsAction();
-        
+
         $request = new GetTransactionDetailsRequest(array(), $paymentRequestN = 5);
 
         $action->execute($request);
@@ -92,29 +92,29 @@ class GetTransactionDetailsActionTest extends \PHPUnit_Framework_TestCase
     public function shouldCallApiGetTransactionDetailsMethodWithExpectedRequiredArguments()
     {
         $actualRequest = null;
-        
+
         $apiMock = $this->createApiMock();
         $apiMock
             ->expects($this->once())
             ->method('getTransactionDetails')
-            ->will($this->returnCallback(function($request) use (&$actualRequest){
+            ->will($this->returnCallback(function($request) use (&$actualRequest) {
                 $actualRequest = $request;
 
                 return new Response();
             }))
         ;
-        
+
         $action = new GetTransactionDetailsAction();
         $action->setApi($apiMock);
 
         $request = new GetTransactionDetailsRequest(array(
-            'PAYMENTREQUEST_5_TRANSACTIONID' => 'theTransactionId' 
+            'PAYMENTREQUEST_5_TRANSACTIONID' => 'theTransactionId'
         ), $paymentRequestN = 5);
 
         $action->execute($request);
-        
+
         $this->assertInstanceOf('Buzz\Message\Form\FormRequest', $actualRequest);
-        
+
         $fields = $actualRequest->getFields();
 
         $this->assertArrayHasKey('TRANSACTIONID', $fields);
@@ -135,7 +135,7 @@ class GetTransactionDetailsActionTest extends \PHPUnit_Framework_TestCase
                 $response->setContent(http_build_query(array(
                     'PAYMENTSTATUS' => 'theStatus',
                 )));
-                
+
                 return $response;
             }))
         ;
@@ -148,7 +148,7 @@ class GetTransactionDetailsActionTest extends \PHPUnit_Framework_TestCase
         ), $paymentRequestN = 5);
 
         $action->execute($request);
-        
+
         $this->assertArrayHasKey('PAYMENTREQUEST_5_PAYMENTSTATUS', $request->getModel());
         $this->assertEquals(
             'theStatus',
