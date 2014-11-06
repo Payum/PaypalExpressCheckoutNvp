@@ -358,7 +358,7 @@ class Api
 
         $this->addVersionField($request);
         $this->addAuthorizeFields($request);
-
+        
         return $this->doRequest($request);
     }
 
@@ -381,7 +381,7 @@ class Api
 
         return $this->doRequest($request);
     }
-
+    
     /**
      * Require: TRANSACTIONID
      *
@@ -527,8 +527,8 @@ class Api
     {
         $request->setMethod('POST');
         $request->fromUrl($this->getApiEndpoint());
-
-        $this->client->send($request, $response = new Response);
+        
+        $this->client->send($request, $response = new Response, $this->getClientOptions());
 
         if (false == $response->isSuccessful()) {
             throw HttpException::factory($request, $response);
@@ -565,6 +565,22 @@ class Api
             http_build_query(array_replace($defaultQuery, $query))
         );
     }
+    
+    /**
+     * @return array
+     */
+    protected function getClientOptions()
+    {
+        $options = array();
+        if($this->options['sandbox'])
+        {
+            $options[CURLOPT_SSL_CIPHER_LIST] = 'TLSv1';
+            $options[CURLOPT_SSLVERSION] = CURL_SSLVERSION_TLSv1;
+            $options[CURLOPT_SSL_VERIFYPEER] = false;
+            $options[CURLOPT_SSL_VERIFYHOST] = false;
+        }
+        return $options;
+    }
 
     /**
      * @return string
@@ -594,4 +610,5 @@ class Api
     {
         $request->setField('VERSION', self::VERSION);
     }
+    
 }
