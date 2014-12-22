@@ -1,14 +1,14 @@
 # Authorize token custom query parameters.
 
-It often required to customize authorize token ulr parameters.
-For example you may want a mobile version of paypal pages.
+It often required to customize authorize token URL parameters.
+For example you may want a mobile version of PayPal pages.
 In this case you would like to change `cmd` from `_express-checkout` to `_express-checkout-mobile`.
-Or to change "Continue" button to "Pay" on the last paypal's page. To do so you have to send an extra query parameter `useraction=commit`.
+Or to change "Continue" button to "Pay" on the last PayPal page. To do so you have to send an extra query parameter `useraction=commit`.
 So here we would describe ways you can use this.
 
 ## Static usage.
 
-You can pass these query parameters as api options:
+You can pass these query parameters as API options:
 
 ```php
 <?php
