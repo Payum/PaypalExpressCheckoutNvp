@@ -84,15 +84,15 @@ header("Location: ".$captureToken->getTargetUrl());
 ```
 
 The script is pretty similar to ordinary purchase.
-The only difference here we set some special options to agreementDetails.
-The rest is same. Create capture token.
+The only difference here is that we set some special options to agreementDetails.
+The rest is the same. Create a capture token.
 Done token in this example renamed to `createRecurringPaymentToken`.
 This is because we have one more step to do before we can go to `done.php`.
 
 ## Create recurring payment
 
-After capture did its job and agreement is created.
-We are redirected back to `create_recurring_payment.php` script.
+After capture did its job and agreement is created
+we are redirected back to `create_recurring_payment.php` script.
 Here we have to check status of agreement and if it is good: create recurring payment.
 After all we have to redirect user to some safe page.
 The page that shows payment details could be a good starting place.
