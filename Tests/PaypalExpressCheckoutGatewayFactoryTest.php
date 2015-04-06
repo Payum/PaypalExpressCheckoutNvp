@@ -1,18 +1,18 @@
 <?php
 namespace Payum\Paypal\ExpressCheckout\Nvp\Tests;
 
-use Payum\Paypal\ExpressCheckout\Nvp\PaymentFactory;
+use Payum\Paypal\ExpressCheckout\Nvp\PaypalExpressCheckoutGatewayFactory;
 
-class PaymentFactoryTest extends \PHPUnit_Framework_TestCase
+class PaypalExpressCheckoutGatewayFactoryTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @test
      */
-    public function shouldImplementPaymentFactoryInterface()
+    public function shouldImplementGatewayFactoryInterface()
     {
-        $rc = new \ReflectionClass('Payum\Paypal\ExpressCheckout\Nvp\PaymentFactory');
+        $rc = new \ReflectionClass('Payum\Paypal\ExpressCheckout\Nvp\PaypalExpressCheckoutGatewayFactory');
 
-        $this->assertTrue($rc->implementsInterface('Payum\Core\PaymentFactoryInterface'));
+        $this->assertTrue($rc->implementsInterface('Payum\Core\GatewayFactoryInterface'));
     }
 
     /**
@@ -20,77 +20,77 @@ class PaymentFactoryTest extends \PHPUnit_Framework_TestCase
      */
     public function couldBeConstructedWithoutAnyArguments()
     {
-        new PaymentFactory();
+        new PaypalExpressCheckoutGatewayFactory();
     }
 
     /**
      * @test
      */
-    public function shouldCreateCorePaymentFactoryIfNotPassed()
+    public function shouldCreateCoreGatewayFactoryIfNotPassed()
     {
-        $factory = new PaymentFactory();
+        $factory = new PaypalExpressCheckoutGatewayFactory();
 
-        $this->assertAttributeInstanceOf('Payum\Core\PaymentFactory', 'corePaymentFactory', $factory);
+        $this->assertAttributeInstanceOf('Payum\Core\GatewayFactory', 'coreGatewayFactory', $factory);
     }
 
     /**
      * @test
      */
-    public function shouldUseCorePaymentFactoryPassedAsSecondArgument()
+    public function shouldUseCoreGatewayFactoryPassedAsSecondArgument()
     {
-        $corePaymentFactory = $this->getMock('Payum\Core\PaymentFactoryInterface');
+        $coreGatewayFactory = $this->getMock('Payum\Core\GatewayFactoryInterface');
 
-        $factory = new PaymentFactory(array(), $corePaymentFactory);
+        $factory = new PaypalExpressCheckoutGatewayFactory(array(), $coreGatewayFactory);
 
-        $this->assertAttributeSame($corePaymentFactory, 'corePaymentFactory', $factory);
+        $this->assertAttributeSame($coreGatewayFactory, 'coreGatewayFactory', $factory);
     }
 
     /**
      * @test
      */
-    public function shouldAllowCreatePayment()
+    public function shouldAllowCreateGateway()
     {
-        $factory = new PaymentFactory();
+        $factory = new PaypalExpressCheckoutGatewayFactory();
 
-        $payment = $factory->create(array(
+        $gateway = $factory->create(array(
             'username' => 'aName',
             'password' => 'aPass',
             'signature' => 'aSign',
         ));
 
-        $this->assertInstanceOf('Payum\Core\Payment', $payment);
+        $this->assertInstanceOf('Payum\Core\Gateway', $gateway);
 
-        $this->assertAttributeNotEmpty('apis', $payment);
-        $this->assertAttributeNotEmpty('actions', $payment);
+        $this->assertAttributeNotEmpty('apis', $gateway);
+        $this->assertAttributeNotEmpty('actions', $gateway);
 
-        $extensions = $this->readAttribute($payment, 'extensions');
+        $extensions = $this->readAttribute($gateway, 'extensions');
         $this->assertAttributeNotEmpty('extensions', $extensions);
     }
 
     /**
      * @test
      */
-    public function shouldAllowCreatePaymentWithCustomApi()
+    public function shouldAllowCreateGatewayWithCustomApi()
     {
-        $factory = new PaymentFactory();
+        $factory = new PaypalExpressCheckoutGatewayFactory();
 
-        $payment = $factory->create(array('payum.api' => new \stdClass()));
+        $gateway = $factory->create(array('payum.api' => new \stdClass()));
 
-        $this->assertInstanceOf('Payum\Core\Payment', $payment);
+        $this->assertInstanceOf('Payum\Core\Gateway', $gateway);
 
-        $this->assertAttributeNotEmpty('apis', $payment);
-        $this->assertAttributeNotEmpty('actions', $payment);
+        $this->assertAttributeNotEmpty('apis', $gateway);
+        $this->assertAttributeNotEmpty('actions', $gateway);
 
-        $extensions = $this->readAttribute($payment, 'extensions');
+        $extensions = $this->readAttribute($gateway, 'extensions');
         $this->assertAttributeNotEmpty('extensions', $extensions);
     }
 
     /**
      * @test
      */
-    public function shouldAllowCreatePaymentConfig()
+    public function shouldAllowCreateGatewayConfig()
     {
-        $factory = new PaymentFactory();
+        $factory = new PaypalExpressCheckoutGatewayFactory();
 
         $config = $factory->createConfig();
 
@@ -101,9 +101,9 @@ class PaymentFactoryTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      */
-    public function shouldAddDefaultConfigPassedInConstructorWhileCreatingPaymentConfig()
+    public function shouldAddDefaultConfigPassedInConstructorWhileCreatingGatewayConfig()
     {
-        $factory = new PaymentFactory(array(
+        $factory = new PaypalExpressCheckoutGatewayFactory(array(
             'foo' => 'fooVal',
             'bar' => 'barVal',
         ));
@@ -124,7 +124,7 @@ class PaymentFactoryTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldConfigContainDefaultOptions()
     {
-        $factory = new PaymentFactory();
+        $factory = new PaypalExpressCheckoutGatewayFactory();
 
         $config = $factory->createConfig();
 
@@ -142,7 +142,7 @@ class PaymentFactoryTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldConfigContainFactoryNameAndTitle()
     {
-        $factory = new PaymentFactory();
+        $factory = new PaypalExpressCheckoutGatewayFactory();
 
         $config = $factory->createConfig();
 
@@ -163,7 +163,7 @@ class PaymentFactoryTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldThrowIfRequiredOptionsNotPassed()
     {
-        $factory = new PaymentFactory();
+        $factory = new PaypalExpressCheckoutGatewayFactory();
 
         $factory->create();
     }
