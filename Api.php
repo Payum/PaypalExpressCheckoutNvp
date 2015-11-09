@@ -503,7 +503,6 @@ class Api
     }
 
     /**
-     * @param array $fields
      * Require: AUTHORIZATIONID, AMT, COMPLETETYPE
      *
      * @param array $fields
@@ -524,7 +523,7 @@ class Api
     }
 
     /**
-     * @param FormRequest $request
+     * @param array $fields
      *
      * @throws HttpException
      *
