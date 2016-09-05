@@ -20,6 +20,7 @@ use Payum\Paypal\ExpressCheckout\Nvp\Action\Api\UpdateRecurringPaymentProfileAct
 use Payum\Paypal\ExpressCheckout\Nvp\Action\Api\DoVoidAction;
 use Payum\Paypal\ExpressCheckout\Nvp\Action\AuthorizeAction;
 use Payum\Paypal\ExpressCheckout\Nvp\Action\CaptureAction;
+use Payum\Paypal\ExpressCheckout\Nvp\Action\CancelAction;
 use Payum\Paypal\ExpressCheckout\Nvp\Action\ConvertPaymentAction;
 use Payum\Paypal\ExpressCheckout\Nvp\Action\NotifyAction;
 use Payum\Paypal\ExpressCheckout\Nvp\Action\PaymentDetailsStatusAction;
@@ -41,6 +42,7 @@ class PaypalExpressCheckoutGatewayFactory extends GatewayFactory
             'payum.template.confirm_order' => '@PayumPaypalExpressCheckout/confirmOrder.html.twig',
 
             'payum.action.capture' => new CaptureAction(),
+            'payum.action.cancel' => new CancelAction(),
             'payum.action.authorize' => new AuthorizeAction(),
             'payum.action.convert_payment' => new ConvertPaymentAction(),
             'payum.action.notify' => new NotifyAction(),
