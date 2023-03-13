@@ -1,8 +1,8 @@
 <?php
-namespace Payum\Paypal\ExpressCheckout\Nvp\Tests\Request\Api;
+namespace Workup\Payum\Paypal\ExpressCheckout\Nvp\Tests\Request\Api;
 
 use Payum\Core\Request\Generic;
-use Payum\Paypal\ExpressCheckout\Nvp\Request\Api\DoCapture;
+use Workup\Payum\Paypal\ExpressCheckout\Nvp\Request\Api\DoCapture;
 
 class DoCaptureTest extends \PHPUnit\Framework\TestCase
 {

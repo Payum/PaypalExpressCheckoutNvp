@@ -1,5 +1,5 @@
 <?php
-namespace Payum\Paypal\ExpressCheckout\Nvp\Action\Api;
+namespace Workup\Payum\Paypal\ExpressCheckout\Nvp\Action\Api;
 
 use Payum\Core\Action\ActionInterface;
 use Payum\Core\ApiAwareInterface;
@@ -11,9 +11,9 @@ use Payum\Core\GatewayAwareTrait;
 use Payum\Core\Reply\HttpResponse;
 use Payum\Core\Request\GetHttpRequest;
 use Payum\Core\Request\RenderTemplate;
-use Payum\Paypal\ExpressCheckout\Nvp\Api;
-use Payum\Paypal\ExpressCheckout\Nvp\Request\Api\ConfirmOrder;
-use Payum\Paypal\ExpressCheckout\Nvp\Request\Api\SetExpressCheckout;
+use Workup\Payum\Paypal\ExpressCheckout\Nvp\Api;
+use Workup\Payum\Paypal\ExpressCheckout\Nvp\Request\Api\ConfirmOrder;
+use Workup\Payum\Paypal\ExpressCheckout\Nvp\Request\Api\SetExpressCheckout;
 
 class ConfirmOrderAction implements ActionInterface, GatewayAwareInterface, ApiAwareInterface
 {

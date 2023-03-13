@@ -1,8 +1,8 @@
 <?php
-namespace Payum\Paypal\ExpressCheckout\Nvp\Tests;
+namespace Workup\Payum\Paypal\ExpressCheckout\Nvp\Tests;
 
 use Payum\Core\Tests\AbstractGatewayFactoryTest;
-use Payum\Paypal\ExpressCheckout\Nvp\PaypalExpressCheckoutGatewayFactory;
+use Workup\Payum\Paypal\ExpressCheckout\Nvp\PaypalExpressCheckoutGatewayFactory;
 
 class PaypalExpressCheckoutGatewayFactoryTest extends AbstractGatewayFactoryTest
 {

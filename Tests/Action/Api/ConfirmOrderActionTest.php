@@ -1,5 +1,5 @@
 <?php
-namespace Payum\Paypal\ExpressCheckout\Nvp\Tests\Action\Api;
+namespace Workup\Payum\Paypal\ExpressCheckout\Nvp\Tests\Action\Api;
 
 use Payum\Core\Bridge\Spl\ArrayObject;
 use Payum\Core\GatewayAwareInterface;
@@ -7,8 +7,8 @@ use Payum\Core\Reply\HttpResponse;
 use Payum\Core\Request\GetHttpRequest;
 use Payum\Core\Request\RenderTemplate;
 use Payum\Core\Tests\GenericActionTest;
-use Payum\Paypal\ExpressCheckout\Nvp\Action\Api\ConfirmOrderAction;
-use Payum\Paypal\ExpressCheckout\Nvp\Request\Api\ConfirmOrder;
+use Workup\Payum\Paypal\ExpressCheckout\Nvp\Action\Api\ConfirmOrderAction;
+use Workup\Payum\Paypal\ExpressCheckout\Nvp\Request\Api\ConfirmOrder;
 
 class ConfirmOrderActionTest extends GenericActionTest
 {

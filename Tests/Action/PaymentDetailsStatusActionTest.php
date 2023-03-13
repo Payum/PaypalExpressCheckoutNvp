@@ -1,9 +1,9 @@
 <?php
-namespace Payum\Paypal\ExpressCheckout\Nvp\Tests\Action;
+namespace Workup\Payum\Paypal\ExpressCheckout\Nvp\Tests\Action;
 
 use Payum\Core\Request\GetHumanStatus;
-use Payum\Paypal\ExpressCheckout\Nvp\Action\PaymentDetailsStatusAction;
-use Payum\Paypal\ExpressCheckout\Nvp\Api;
+use Workup\Payum\Paypal\ExpressCheckout\Nvp\Action\PaymentDetailsStatusAction;
+use Workup\Payum\Paypal\ExpressCheckout\Nvp\Api;
 
 class PaymentDetailsStatusActionTest extends \PHPUnit\Framework\TestCase
 {
@@ -12,7 +12,7 @@ class PaymentDetailsStatusActionTest extends \PHPUnit\Framework\TestCase
      */
     public function shouldImplementsActionInterface()
     {
-        $rc = new \ReflectionClass('Payum\Paypal\ExpressCheckout\Nvp\Action\PaymentDetailsStatusAction');
+        $rc = new \ReflectionClass('Workup\Payum\Paypal\ExpressCheckout\Nvp\Action\PaymentDetailsStatusAction');
 
         $this->assertTrue($rc->implementsInterface('Payum\Core\Action\ActionInterface'));
     }

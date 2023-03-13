@@ -1,5 +1,5 @@
 <?php
-namespace Payum\Paypal\ExpressCheckout\Nvp;
+namespace Workup\Payum\Paypal\ExpressCheckout\Nvp;
 
 use Http\Message\MessageFactory;
 use Payum\Core\Bridge\Spl\ArrayObject;

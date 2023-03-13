@@ -1,10 +1,10 @@
 <?php
-namespace Payum\Paypal\ExpressCheckout\Nvp\Action\Api;
+namespace Workup\Payum\Paypal\ExpressCheckout\Nvp\Action\Api;
 
 use Payum\Core\Action\ActionInterface;
 use Payum\Core\ApiAwareInterface;
 use Payum\Core\Exception\UnsupportedApiException;
-use Payum\Paypal\ExpressCheckout\Nvp\Api;
+use Workup\Payum\Paypal\ExpressCheckout\Nvp\Api;
 
 /**
  * @deprecated since 1.4.1 will be removed in 2.x
@@ -12,7 +12,7 @@ use Payum\Paypal\ExpressCheckout\Nvp\Api;
 abstract class BaseApiAwareAction implements ActionInterface, ApiAwareInterface
 {
     /**
-     * @var \Payum\Paypal\ExpressCheckout\Nvp\Api
+     * @var \Workup\Payum\Paypal\ExpressCheckout\Nvp\Api
      */
     protected $api;
 

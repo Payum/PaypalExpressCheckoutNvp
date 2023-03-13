@@ -1,10 +1,10 @@
 <?php
-namespace Payum\Paypal\ExpressCheckout\Nvp\Tests\Action;
+namespace Workup\Payum\Paypal\ExpressCheckout\Nvp\Tests\Action;
 
 use Payum\Core\GatewayAwareInterface;
 use Payum\Core\Request\Notify;
 use Payum\Core\Tests\GenericActionTest;
-use Payum\Paypal\ExpressCheckout\Nvp\Action\NotifyAction;
+use Workup\Payum\Paypal\ExpressCheckout\Nvp\Action\NotifyAction;
 
 class NotifyActionTest extends GenericActionTest
 {

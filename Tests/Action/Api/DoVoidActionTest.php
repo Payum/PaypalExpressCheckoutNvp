@@ -1,8 +1,8 @@
 <?php
-namespace Payum\Paypal\ExpressCheckout\Nvp\Tests\Action\Api;
+namespace Workup\Payum\Paypal\ExpressCheckout\Nvp\Tests\Action\Api;
 
-use Payum\Paypal\ExpressCheckout\Nvp\Action\Api\DoVoidAction;
-use Payum\Paypal\ExpressCheckout\Nvp\Request\Api\DoVoid;
+use Workup\Payum\Paypal\ExpressCheckout\Nvp\Action\Api\DoVoidAction;
+use Workup\Payum\Paypal\ExpressCheckout\Nvp\Request\Api\DoVoid;
 
 class DoVoidActionTest extends \PHPUnit\Framework\TestCase
 {
@@ -11,7 +11,7 @@ class DoVoidActionTest extends \PHPUnit\Framework\TestCase
      */
     public function shouldImplementActionInterface()
     {
-        $rc = new \ReflectionClass('Payum\Paypal\ExpressCheckout\Nvp\Action\Api\DoVoidAction');
+        $rc = new \ReflectionClass('Workup\Payum\Paypal\ExpressCheckout\Nvp\Action\Api\DoVoidAction');
 
         $this->assertTrue($rc->implementsInterface('Payum\Core\Action\ActionInterface'));
     }
@@ -21,7 +21,7 @@ class DoVoidActionTest extends \PHPUnit\Framework\TestCase
      */
     public function shouldImplementApiAwareInterface()
     {
-        $rc = new \ReflectionClass('Payum\Paypal\ExpressCheckout\Nvp\Action\Api\DoVoidAction');
+        $rc = new \ReflectionClass('Workup\Payum\Paypal\ExpressCheckout\Nvp\Action\Api\DoVoidAction');
 
         $this->assertTrue($rc->implementsInterface('Payum\Core\ApiAwareInterface'));
     }
@@ -31,7 +31,7 @@ class DoVoidActionTest extends \PHPUnit\Framework\TestCase
      */
     public function shouldImplementGatewayAwareInterface()
     {
-        $rc = new \ReflectionClass('Payum\Paypal\ExpressCheckout\Nvp\Action\Api\DoVoidAction');
+        $rc = new \ReflectionClass('Workup\Payum\Paypal\ExpressCheckout\Nvp\Action\Api\DoVoidAction');
 
         $this->assertTrue($rc->implementsInterface('Payum\Core\GatewayAwareInterface'));
     }
@@ -41,7 +41,7 @@ class DoVoidActionTest extends \PHPUnit\Framework\TestCase
      */
     public function shouldUseApiAwareTrait()
     {
-        $rc = new \ReflectionClass('Payum\Paypal\ExpressCheckout\Nvp\Action\Api\DoVoidAction');
+        $rc = new \ReflectionClass('Workup\Payum\Paypal\ExpressCheckout\Nvp\Action\Api\DoVoidAction');
 
         $this->assertContains('Payum\Core\ApiAwareTrait', $rc->getTraitNames());
     }
@@ -51,7 +51,7 @@ class DoVoidActionTest extends \PHPUnit\Framework\TestCase
      */
     public function shouldUseGatewayAwareTrait()
     {
-        $rc = new \ReflectionClass('Payum\Paypal\ExpressCheckout\Nvp\Action\Api\DoVoidAction');
+        $rc = new \ReflectionClass('Workup\Payum\Paypal\ExpressCheckout\Nvp\Action\Api\DoVoidAction');
 
         $this->assertContains('Payum\Core\GatewayAwareTrait', $rc->getTraitNames());
     }
@@ -168,10 +168,10 @@ class DoVoidActionTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @return \PHPUnit_Framework_MockObject_MockObject|\Payum\Paypal\ExpressCheckout\Nvp\Api
+     * @return \PHPUnit_Framework_MockObject_MockObject|\Workup\Payum\Paypal\ExpressCheckout\Nvp\Api
      */
     protected function createApiMock()
     {
-        return $this->createMock('Payum\Paypal\ExpressCheckout\Nvp\Api', array(), array(), '', false);
+        return $this->createMock('Workup\Payum\Paypal\ExpressCheckout\Nvp\Api', array(), array(), '', false);
     }
 }

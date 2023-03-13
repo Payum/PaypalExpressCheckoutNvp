@@ -1,11 +1,11 @@
 <?php
-namespace Payum\Paypal\ExpressCheckout\Nvp\Tests\Action\Api;
+namespace Workup\Payum\Paypal\ExpressCheckout\Nvp\Tests\Action\Api;
 
 use Payum\Core\Action\ActionInterface;
 use Payum\Core\ApiAwareInterface;
 use Payum\Core\Reply\HttpRedirect;
-use Payum\Paypal\ExpressCheckout\Nvp\Action\Api\AuthorizeTokenAction;
-use Payum\Paypal\ExpressCheckout\Nvp\Request\Api\AuthorizeToken;
+use Workup\Payum\Paypal\ExpressCheckout\Nvp\Action\Api\AuthorizeTokenAction;
+use Workup\Payum\Paypal\ExpressCheckout\Nvp\Request\Api\AuthorizeToken;
 
 class AuthorizeTokenActionTest extends \PHPUnit\Framework\TestCase
 {
@@ -201,10 +201,10 @@ class AuthorizeTokenActionTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @return \PHPUnit_Framework_MockObject_MockObject|\Payum\Paypal\ExpressCheckout\Nvp\Api
+     * @return \PHPUnit_Framework_MockObject_MockObject|\Workup\Payum\Paypal\ExpressCheckout\Nvp\Api
      */
     protected function createApiMock()
     {
-        return $this->createMock('Payum\Paypal\ExpressCheckout\Nvp\Api', array(), array(), '', false);
+        return $this->createMock('Workup\Payum\Paypal\ExpressCheckout\Nvp\Api', array(), array(), '', false);
     }
 }

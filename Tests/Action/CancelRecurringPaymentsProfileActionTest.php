@@ -1,5 +1,5 @@
 <?php
-namespace Payum\Paypal\ExpressCheckout\Nvp\Tests\Action;
+namespace Workup\Payum\Paypal\ExpressCheckout\Nvp\Tests\Action;
 
 use Payum\Core\Action\ActionInterface;
 use Payum\Core\GatewayAwareInterface;
@@ -8,8 +8,8 @@ use Payum\Core\Request\Cancel;
 use Payum\Core\Request\Generic;
 use Payum\Core\Request\Sync;
 use Payum\Core\Tests\GenericActionTest;
-use Payum\Paypal\ExpressCheckout\Nvp\Action\CancelRecurringPaymentsProfileAction;
-use Payum\Paypal\ExpressCheckout\Nvp\Request\Api\ManageRecurringPaymentsProfileStatus;
+use Workup\Payum\Paypal\ExpressCheckout\Nvp\Action\CancelRecurringPaymentsProfileAction;
+use Workup\Payum\Paypal\ExpressCheckout\Nvp\Request\Api\ManageRecurringPaymentsProfileStatus;
 
 class CancelRecurringPaymentsProfileActionTest extends GenericActionTest
 {
@@ -21,7 +21,7 @@ class CancelRecurringPaymentsProfileActionTest extends GenericActionTest
     /**
      * @var ActionInterface
      */
-    protected $actionClass = 'Payum\Paypal\ExpressCheckout\Nvp\Action\CancelRecurringPaymentsProfileAction';
+    protected $actionClass = 'Workup\Payum\Paypal\ExpressCheckout\Nvp\Action\CancelRecurringPaymentsProfileAction';
 
     public function provideSupportedRequests(): \Iterator
     {
