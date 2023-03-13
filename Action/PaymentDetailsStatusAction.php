@@ -93,7 +93,7 @@ class PaymentDetailsStatusAction implements ActionInterface
             $voidedCounter = 0;
             $allCounter = 0;
             foreach (range(0, 9) as $index) {
-                if (null === $paymentStatus = $model['PAYMENTINFO_'.$index.'_PAYMENTSTATUS']) {
+                if (null === $paymentStatus = $model['PAYMENTREQUEST_'.$index.'_PAYMENTSTATUS']) {
                     continue;
                 }
 
@@ -114,7 +114,7 @@ class PaymentDetailsStatusAction implements ActionInterface
                     Api::PAYMENTSTATUS_PENDING,
                 );
                 if (in_array($paymentStatus, $pendingStatuses)) {
-                    if (Api::PENDINGREASON_AUTHORIZATION == $model['PAYMENTINFO_'.$index.'_PENDINGREASON']) {
+                    if (Api::PENDINGREASON_AUTHORIZATION == $model['PAYMENTREQUEST_'.$index.'_PENDINGREASON']) {
                         $authorizedCounter++;
                     } else {
                         $request->markPending();
@@ -127,7 +127,7 @@ class PaymentDetailsStatusAction implements ActionInterface
                     Api::PAYMENTSTATUS_VOIDED,
                 );
                 if (in_array($paymentStatus, $canceledStatuses)) {
-                    if (Api::PENDINGREASON_AUTHORIZATION == $model['PAYMENTINFO_'.$index.'_PENDINGREASON']) {
+                    if (Api::PENDINGREASON_AUTHORIZATION == $model['PAYMENTREQUEST_'.$index.'_PENDINGREASON']) {
                         $voidedCounter++;
                     }
                 }
